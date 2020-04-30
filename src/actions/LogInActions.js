@@ -5,7 +5,7 @@ import {
   LOG_IN_SUCCESS,
   LOG_IN_FAIL,
 } from "./types";
-import Firebase from "../../Firebase";
+import Firebase from "../Firebase";
 
 export const usernameAdd = (text) => {
   return {

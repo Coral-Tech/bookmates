@@ -2,14 +2,14 @@ import React, { Component } from "react";
 import { View, Text, Button } from "react-native";
 import { connect } from "react-redux";
 
-import { Input, CardSection, Spinner } from "../../common";
+import { Input, CardSection, Spinner } from "../common";
 import {
   usernameAdd,
   passwordAdd,
-  loginSubmit,
-} from "../../actions/LogInActions";
+  SignUpSubmit,
+} from "../../actions/SignUpActions";
 
-class LoginForm extends Component {
+class SignUpForm extends Component {
   onUsernameChange(text) {
     this.props.usernameAdd(text);
   }
@@ -18,23 +18,16 @@ class LoginForm extends Component {
     this.props.passwordAdd(text);
   }
 
-  logInPress() {
+  signUpPress() {
     const { username, password } = this.props;
-    this.props.loginSubmit({ username, password });
-    this.gotoUser();
+    this.props.SignUpSubmit({ username, password });
   }
-
-  gotoUser = () => {
-    if (this.props.user) {
-      this.props.navigation.navigate("bookshelf");
-    }
-  };
 
   renderButton() {
     if (this.props.loading) {
       return <Spinner />;
     }
-    return <Button onPress={this.logInPress.bind(this)} title="Login" />;
+    return <Button onPress={this.signUpPress.bind(this)} title="SignUp" />;
   }
 
   renderError() {
@@ -75,23 +68,20 @@ class LoginForm extends Component {
         {this.renderError()}
         {this.renderButton()}
 
-        <Button onPress={this.gotoUser} title="Enter" />
         <Button onPress={this.goBack} title="Back" />
       </View>
     );
   }
 }
-
 const mapStateToProps = (state) => {
   return {
-    username: state.login.username,
-    password: state.login.password,
-    error: state.login.error,
-    loading: state.login.loading,
-    user: state.login.user,
+    username: state.signup.username,
+    password: state.signup.password,
+    error: state.signup.error,
+    loading: state.signup.loading,
   };
 };
 
-const mapDispatchToProps = { usernameAdd, passwordAdd, loginSubmit };
+const mapDispatchToProps = { usernameAdd, passwordAdd, SignUpSubmit };
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);
+export default connect(mapStateToProps, mapDispatchToProps)(SignUpForm);

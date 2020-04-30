@@ -3,14 +3,14 @@ import { createBottomTabNavigator } from "react-navigation-tabs";
 import { createAppContainer } from "react-navigation";
 
 // // Screens
-import LoginOrSignUp from "./main_screens/guest/LogInOrSignUp";
-import SignUpForm from "./main_screens/guest/SignUpForm";
-import LoginForm from "./main_screens/guest/LoginForm";
+import LoginOrSignUp from "./components/guest/LogInOrSignUp";
+import SignUpForm from "./components/guest/SignUpForm";
+import LoginForm from "./components/guest/LoginForm";
 
-import BookshelfList from "./main_screens/user/BookshelfList";
-import AddBook from "./main_screens/user/AddBook";
-import DiscoverList from "./main_screens/user/DiscoverList";
-import Profile from "./main_screens/user/Profile";
+import BookshelfList from "./components/user/BookshelfList";
+import AddBook from "./components/user/AddBook";
+import DiscoverList from "./components/user/DiscoverList";
+import Profile from "./components/user/Profile";
 
 // Guest screens
 const guestScreens = {

@@ -4,9 +4,9 @@ import { createStore, applyMiddleware } from "redux";
 import { Provider, connect } from "react-redux";
 import ReduxThunk from "redux-thunk";
 
-import reducers from "./src/components/reducers";
+import reducers from "./src/reducers";
 import Firebase from "./src/Firebase";
-import Navigator from "./src/components/Router";
+import Navigator from "./src/Router";
 
 class App extends Component {
   componentDidMount() {

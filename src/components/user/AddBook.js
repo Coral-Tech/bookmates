@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { View, Text, Button } from "react-native";
-import { Input, CardSection, Spinner } from "../../common";
+import { Input, CardSection, Spinner } from "../common";
 import { connect } from "react-redux";
 
 import {

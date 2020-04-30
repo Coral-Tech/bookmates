@@ -5,7 +5,7 @@ import {
   ADD_BOOK_SUBMIT,
 } from "./types";
 
-import Firebase from "../../Firebase";
+import Firebase from "../Firebase";
 
 // Add Books
 

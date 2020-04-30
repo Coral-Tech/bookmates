@@ -4,7 +4,7 @@ import {
   FETCH_PERSONAL_FAILURE,
 } from "./types";
 
-import Firebase from "../../Firebase";
+import Firebase from "../Firebase";
 
 // Bookshelf
 

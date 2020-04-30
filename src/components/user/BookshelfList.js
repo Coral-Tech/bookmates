@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import { View, Text, Button, FlatList } from "react-native";
 import { connect } from "react-redux";
 
-import { Spinner } from "../../common";
+import { Spinner } from "../common";
 import { booksFetch } from "../../actions/BookshelfActions";
 
 class BookshelfList extends Component {
