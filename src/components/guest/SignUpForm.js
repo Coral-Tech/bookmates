@@ -20,7 +20,10 @@ class SignUpForm extends Component {
 
   signUpPress() {
     const { username, password } = this.props;
-    this.props.SignUpSubmit({ username, password });
+    this.props.SignUpSubmit(
+      { username, password },
+      this.props.navigation.navigate
+    );
   }
 
   renderButton() {

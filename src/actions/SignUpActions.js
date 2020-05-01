@@ -21,13 +21,13 @@ export const passwordAdd = (text) => {
   };
 };
 
-export const SignUpSubmit = ({ username, password }) => {
+export const SignUpSubmit = ({ username, password }, navigateTo) => {
   return (dispatch) => {
     dispatch({ type: SIGN_UP_SUBMIT });
 
     Firebase.auth()
       .createUserWithEmailAndPassword(username, password)
-      .then((user) => signupSucess(dispatch, user))
+      .then((user) => signupSucess(dispatch, user, navigateTo))
       .catch((error) => {
         console.log(error);
         signupFail(dispatch);
@@ -35,13 +35,13 @@ export const SignUpSubmit = ({ username, password }) => {
   };
 };
 
-const signupSucess = (dispatch, user) => {
+const signupSucess = (dispatch, user, navigateTo) => {
   dispatch({
     type: SIGN_UP_SUCCESS,
     payload: user,
   });
 
-  // store.dispatch(NavigationActions.navigate({ routeName: "default" }));
+  navigateTo("bookshelf");
 };
 
 const signupFail = (dispatch) => {

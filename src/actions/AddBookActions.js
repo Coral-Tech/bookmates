@@ -24,7 +24,7 @@ export const bookAuthorAdd = (text) => {
 };
 
 export const addBookSubmit = ({ book_name, author_name }) => {
-  const { currentUser } = Firebase.auth(); //Get the current user
+  const { currentUser } = Firebase.auth(); //Get the currient user
 
   // User book
   const book_details = {

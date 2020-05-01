@@ -20,15 +20,11 @@ class LoginForm extends Component {
 
   logInPress() {
     const { username, password } = this.props;
-    this.props.loginSubmit({ username, password });
-    this.gotoUser();
+    this.props.loginSubmit(
+      { username, password },
+      this.props.navigation.navigate
+    );
   }
-
-  gotoUser = () => {
-    if (this.props.user) {
-      this.props.navigation.navigate("bookshelf");
-    }
-  };
 
   renderButton() {
     if (this.props.loading) {
@@ -75,7 +71,6 @@ class LoginForm extends Component {
         {this.renderError()}
         {this.renderButton()}
 
-        <Button onPress={this.gotoUser} title="Enter" />
         <Button onPress={this.goBack} title="Back" />
       </View>
     );

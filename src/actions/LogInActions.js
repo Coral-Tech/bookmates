@@ -7,6 +7,8 @@ import {
 } from "./types";
 import Firebase from "../Firebase";
 
+import { useNavigation } from "@react-navigation/native";
+
 export const usernameAdd = (text) => {
   return {
     type: LOG_IN_ADD_USERNAME,
@@ -21,13 +23,13 @@ export const passwordAdd = (text) => {
   };
 };
 
-export const loginSubmit = ({ username, password }) => {
+export const loginSubmit = ({ username, password }, navigateTo) => {
   return (dispatch) => {
     dispatch({ type: LOG_IN_SUBMIT });
 
     Firebase.auth()
       .signInWithEmailAndPassword(username, password)
-      .then((user) => loginSucess(dispatch, user))
+      .then((user) => loginSucess(dispatch, user, navigateTo))
       .catch((error) => {
         console.log(error);
         loginFail(dispatch);
@@ -35,11 +37,13 @@ export const loginSubmit = ({ username, password }) => {
   };
 };
 
-const loginSucess = (dispatch, user) => {
+const loginSucess = (dispatch, user, navigateTo) => {
   dispatch({
     type: LOG_IN_SUCCESS,
     payload: user,
   });
+
+  navigateTo("bookshelf");
 };
 
 const loginFail = (dispatch) => {
