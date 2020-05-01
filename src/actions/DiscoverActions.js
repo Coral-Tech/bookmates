@@ -1,34 +1,32 @@
 import {
-  FETCH_PERSONAL_BOOKS,
-  FETCH_PERSONAL_SUCCESS,
-  FETCH_PERSONAL_FAILURE,
+  FETCH_DISCOVER_BOOKS,
+  FETCH_DISCOVER_SUCCESS,
+  FETCH_DISCOVER_FAILURE,
 } from "./types";
 
 import Firebase from "../Firebase";
 
-// Bookshelf
+// Discover
 
-export const booksBookshelfFetch = () => {
-  const { currentUser } = Firebase.auth();
-
+export const booksDiscoverFetch = () => {
   return (dispatch) => {
-    dispatch({ type: FETCH_PERSONAL_BOOKS });
+    dispatch({ type: FETCH_DISCOVER_BOOKS });
 
     Firebase.database()
-      .ref(`/users/${currentUser.uid}/owned_books`)
+      .ref(`/users/`)
       .on("value", (snapshot) => booksDiscoverFetchSuccess(dispatch, snapshot));
   };
 };
 
 const booksDiscoverFetchSuccess = (dispatch, snapshot) => {
   dispatch({
-    type: FETCH_PERSONAL_SUCCESS,
+    type: FETCH_DISCOVER_SUCCESS,
     payload: snapshot.val(),
   });
 };
 
 // const booksFetchFail = (dispatch) => {
 //   dispatch({
-//     type: FETCH_PERSONAL_FAILURE,
+//     type: FETCH_DISCOVER_FAILURE,
 //   });
 // };

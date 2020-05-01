@@ -4,11 +4,11 @@ import { View, Text, Button, FlatList } from "react-native";
 import { connect } from "react-redux";
 
 import { Spinner } from "../common";
-import { booksFetch } from "../../actions/BookshelfActions";
+import { booksBookshelfFetch } from "../../actions/BookshelfActions";
 
 class BookshelfList extends Component {
   componentDidMount() {
-    this.props.booksFetch();
+    this.props.booksBookshelfFetch();
   }
 
   addBookScreen = () => {
@@ -18,9 +18,16 @@ class BookshelfList extends Component {
   renderRow(book) {
     console.log(this.props.booklist);
     console.log(book);
+
+    const {
+      book_name,
+      book_author,
+      cover,
+      datetime_added,
+    } = book.item.book_details;
     return (
       <View>
-        <Text>{book.item.book_name}</Text>
+        <Text>{book_name}</Text>
       </View>
     );
   }
@@ -59,4 +66,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { booksFetch })(BookshelfList);
+export default connect(mapStateToProps, { booksBookshelfFetch })(BookshelfList);
