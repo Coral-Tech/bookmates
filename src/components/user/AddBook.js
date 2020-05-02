@@ -28,8 +28,6 @@ class AddBook extends Component {
   render() {
     return (
       <View>
-        <Text>AddBook</Text>
-
         <CardSection>
           <Input
             label="Book Name"
