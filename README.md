@@ -23,13 +23,13 @@ _Work in Progress_
 - JavaScript
 - Firebase
 
-### Requirements
+<!-- ### Requirements
 
 _Work in Progress_
 
 ### Edge Cases
 
-_Work in Progress_
+_Work in Progress_ -->
 
 ## Contributor setup
 
