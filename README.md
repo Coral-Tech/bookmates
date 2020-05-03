@@ -10,8 +10,6 @@ Bookmates is a React Native application that connects people through the books t
 
 _Work in progress_ -->
 
----
-
 ### Use case
 
 1. **Add books** that you are willing to share with other people near you
@@ -24,6 +22,8 @@ _Work in progress_ -->
 ### Screens
 
 _Work in progress_
+
+---
 
 ### Tools
 
