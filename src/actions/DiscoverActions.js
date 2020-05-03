@@ -13,8 +13,14 @@ export const booksDiscoverFetch = () => {
     dispatch({ type: FETCH_DISCOVER_BOOKS });
 
     Firebase.database()
-      .ref(`/users/`)
-      .on("value", (snapshot) => booksDiscoverFetchSuccess(dispatch, snapshot));
+      .ref(`users`)
+      .on(
+        "value",
+        (snapshot) => booksDiscoverFetchSuccess(dispatch, snapshot),
+        function (error) {
+          console.error(error);
+        }
+      );
   };
 };
 

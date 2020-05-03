@@ -11,34 +11,25 @@ class DiscoverList extends Component {
     this.props.booksDiscoverFetch();
   }
 
-  // renderRow(book) {
-  //   const {
-  //     book_name,
-  //     book_author,
-  //     cover,
-  //     datetime_added,
-  //   } = book.item.book_data.book_details;
-  //   return (
-  //     <View>
-  //       <Text>{book_name}</Text>
-  //     </View>
-  //   );
-  // }
+  renderRow(book) {
+    return (
+      <View>
+        <Text>{this.props.data}</Text>
+        <Text></Text>
+      </View>
+    );
+  }
 
   renderList() {
-    console.log("BOOK LIST");
-    console.log(this.props.data);
-
     if (this.props.loading) {
       return <Spinner />;
     }
     return (
-      <View></View>
-      // <FlatList
-      //   data={this.props.booklist || []}
-      //   renderItem={(book) => this.renderRow(book)}
-      //   keyExtractor={(book) => book.uid}
-      // />
+      <FlatList
+        data={this.props.data || []}
+        renderItem={(book) => this.renderRow(book)}
+        keyExtractor={(book) => book.uid}
+      />
     );
   }
 

@@ -15,12 +15,18 @@ export const booksBookshelfFetch = () => {
     dispatch({ type: FETCH_PERSONAL_BOOKS });
 
     Firebase.database()
-      .ref(`/users/${currentUser.uid}/owned_books`)
-      .on("value", (snapshot) => booksDiscoverFetchSuccess(dispatch, snapshot));
+      .ref(`/users/${currentUser.uid}/books/owned_books`)
+      .on(
+        "value",
+        (snapshot) => booksBookshelfFetchSuccess(dispatch, snapshot),
+        function (error) {
+          console.error(error);
+        }
+      );
   };
 };
 
-const booksDiscoverFetchSuccess = (dispatch, snapshot) => {
+const booksBookshelfFetchSuccess = (dispatch, snapshot) => {
   dispatch({
     type: FETCH_PERSONAL_SUCCESS,
     payload: snapshot.val(),

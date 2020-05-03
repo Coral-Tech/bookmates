@@ -1,0 +1,31 @@
+{
+  "rules": {
+    "users": {
+      ".read": "auth !== null",
+      "$uid": {
+        "user_data": {
+          ".read": "auth !== null",
+          ".write": "$uid === auth.uid"
+        },
+        "books": {
+          "owned_books": {
+            ".read": "auth !== null",
+            ".write": "$uid === auth.uid"
+          },
+          "starred_books": {
+            ".read": "$uid === auth.uid",
+            ".write": "$uid === auth.uid"
+          },
+          "borrowed_books": {
+            ".read": "$uid === auth.uid",
+            ".write": "$uid === auth.uid"
+          }
+        },
+        "borrow_requests": {
+          ".read": "$uid === auth.uid",
+          ".write": true
+        }
+      }
+    }
+  }
+}

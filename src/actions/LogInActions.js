@@ -7,8 +7,6 @@ import {
 } from "./types";
 import Firebase from "../Firebase";
 
-import { useNavigation } from "@react-navigation/native";
-
 export const usernameAdd = (text) => {
   return {
     type: LOG_IN_ADD_USERNAME,

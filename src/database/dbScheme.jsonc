@@ -1,0 +1,61 @@
+// A user recieved a borrow request. Once he accepts, then
+// the status of the Owner's book changed to borrowed: true and
+// Borrower's borrowed_books adds the book. Then a notification is sent
+// so they can meet each other.
+
+{
+  "users": {
+    "usedIdFromFirebase": {
+      "user_data": {
+        "name": "text",
+        "lastname": "text",
+        "uid": "text",
+        "user_created": "text",
+        "location": {
+          "country": "text",
+          "region": "text",
+          "city": "text"
+        }
+      },
+      "books": {
+        "owned_books": {
+          "book1IdFromFirebase": {
+            "book_details": {
+              "book_name": "book_name",
+              "author_name": "author_name",
+              "cover": "",
+              "datetime_added": "new Date().toLocaleString()"
+            },
+            "bookstatus": {
+              "borrowed": false,
+              "borrowed_by": "uid"
+            }
+          }
+        },
+        "starred_books": {
+          "book2IdFromFirebase": {
+            "book_name": "book_name",
+            "author_name": "author_name",
+            "cover": "",
+            "datetime_starred": "new Date().toLocaleString()",
+            "owner_uid": "uid"
+          }
+        },
+        "borrowed_books": {
+          "book3IdFromFirebase": {
+            "book_name": "book_name",
+            "author_name": "author_name",
+            "cover": "",
+            "datetime_borrowed": "new Date().toLocaleString()",
+            "owner_uid": "uid"
+          }
+        }
+      },
+      "borrow_requests": {
+        "book1": {
+          "accept": false
+        }
+      }
+    }
+  }
+}

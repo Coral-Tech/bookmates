@@ -7,6 +7,7 @@ import { createAppContainer } from "react-navigation";
 import LoginOrSignUp from "./components/guest/LogInOrSignUp";
 import SignUpForm from "./components/guest/SignUpForm";
 import LoginForm from "./components/guest/LoginForm";
+import AddProfile from "./components/user/AddProfile";
 
 import BookshelfList from "./components/user/BookshelfList";
 import AddBook from "./components/user/AddBook";
@@ -18,6 +19,7 @@ const guestScreens = {
   default: { screen: LoginOrSignUp },
   login: { screen: LoginForm },
   signup: { screen: SignUpForm },
+  profileadd: { screen: AddProfile },
 };
 const guestNavigation = createStackNavigator(guestScreens);
 

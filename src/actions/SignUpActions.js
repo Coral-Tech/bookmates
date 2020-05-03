@@ -41,7 +41,7 @@ const signupSucess = (dispatch, user, navigateTo) => {
     payload: user,
   });
 
-  navigateTo("bookshelf");
+  navigateTo("profileadd");
 };
 
 const signupFail = (dispatch) => {

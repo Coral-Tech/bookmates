@@ -34,30 +34,9 @@ export const addBookSubmit = ({ book_name, author_name }) => {
     datetime_added: new Date().toLocaleString(),
   };
 
-  //  Public Book
-  const public_book_data = {
-    owner: currentUser,
-    starred: {},
-    book_borrow_details: {
-      borrowed: false,
-      user_borrowing: "",
-      borrow_date: "",
-    },
-    book_details: {
-      book_name: book_name,
-      author_name: author_name,
-      cover: "",
-      datetime_added: new Date().toLocaleString(),
-    },
-  };
-
   return (dispatch) => {
-    // Dispatch User Bookshelf
-
-    // Firebase.database().ref("/public_bookshelf/").push({ public_book_data });
-
     Firebase.database()
-      .ref(`/users/${currentUser.uid}/owned_books`)
+      .ref(`/users/${currentUser.uid}/books/owned_books`)
       .push({ book_details })
       .then(() => {
         dispatch({ type: ADD_BOOK_SUBMIT });
