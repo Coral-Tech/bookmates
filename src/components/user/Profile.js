@@ -15,24 +15,34 @@ class Profile extends Component {
     if (this.props.loading) {
       return <Spinner />;
     }
-    const { name, lastname, location } = this.props.user_data;
-    return (
-      <View>
-        <Text>Name: {name}</Text>
-        <Text>Last Name: {lastname}</Text>
-        <Text>Location: {location}</Text>
-      </View>
-    );
+
+    if (this.props.user_data) {
+      const { name, lastname, phone, email, location } = this.props.user_data;
+      return (
+        <View>
+          <Text>Name: {name || []}</Text>
+          <Text>Last Name: {lastname || []}</Text>
+          <Text>Phone: {phone || []}</Text>
+          <Text>Email: {email || []}</Text>
+          <Text>Location: {location || []}</Text>
+        </View>
+      );
+    }
   }
 
   render() {
-    return <View>{this.renderProfile()}</View>;
+    return (
+      <View>
+        <Text>Profile</Text>
+        {this.renderProfile()}
+      </View>
+    );
   }
 }
 
 const mapStateToProps = (state) => {
   return {
-    booklist: state.profile.user_data,
+    user_data: state.profile.user_data,
     loading: state.profile.loading,
   };
 };

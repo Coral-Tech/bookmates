@@ -21,6 +21,7 @@ export const profileFetch = () => {
 };
 
 const profileFetchSuccess = (dispatch, snapshot) => {
+  console.log("PROFILE FETCHED");
   dispatch({
     type: FETCH_PROFILE_SUCCESS,
     payload: snapshot.val(),
