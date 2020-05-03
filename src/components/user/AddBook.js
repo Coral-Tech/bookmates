@@ -9,6 +9,11 @@ import {
   addBookSubmit,
 } from "../../actions/AddBookActions";
 
+// -------------------------- TO DO  --------------------------
+// * Design
+// * Add book cover
+// ------------------------------------------------------------
+
 class AddBook extends Component {
   onBookNameChange(text) {
     this.props.bookNameAdd(text);
@@ -45,6 +50,8 @@ class AddBook extends Component {
             value={this.props.author_name}
           />
         </CardSection>
+
+        <Button onPress={() => {}} title="Add cover" />
 
         <Button onPress={this.addBookPress.bind(this)} title="Add book" />
       </View>

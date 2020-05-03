@@ -9,6 +9,10 @@ import {
   loginSubmit,
 } from "../../actions/LogInActions";
 
+// -------------------------- TO DO  --------------------------
+// * Design
+// ------------------------------------------------------------
+
 class LoginForm extends Component {
   onUsernameChange(text) {
     this.props.usernameAdd(text);

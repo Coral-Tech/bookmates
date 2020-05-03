@@ -6,6 +6,13 @@ import { connect } from "react-redux";
 import { Spinner } from "../common";
 import { booksDiscoverFetch } from "../../actions/DiscoverActions";
 
+// -------------------------- TO DO  --------------------------
+// * Show books
+// * Add starring capability
+// * Add borrow request capability
+// * Design
+// ------------------------------------------------------------
+
 class DiscoverList extends Component {
   componentDidMount() {
     this.props.booksDiscoverFetch();

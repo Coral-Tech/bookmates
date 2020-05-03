@@ -11,6 +11,10 @@ import {
   profileAddSubmit,
 } from "../../actions/AddProfileActions";
 
+// -------------------------- TO DO  --------------------------
+// * Design
+// ------------------------------------------------------------
+
 class AddBook extends Component {
   onNameChange(text) {
     this.props.profileNameAdd(text);

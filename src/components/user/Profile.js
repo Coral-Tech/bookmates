@@ -6,6 +6,12 @@ import { connect } from "react-redux";
 import { Spinner } from "../common";
 import { profileFetch } from "../../actions/ProfileActions";
 
+// -------------------------- TO DO  --------------------------
+// * Design
+// * Profile edit
+// * Profile image add
+// ------------------------------------------------------------
+
 class Profile extends Component {
   componentDidMount() {
     this.props.profileFetch();

@@ -6,6 +6,14 @@ import { connect } from "react-redux";
 import { Spinner } from "../common";
 import { booksBookshelfFetch } from "../../actions/BookshelfActions";
 
+// -------------------------- TO DO  --------------------------
+// * Add edit to each owned book
+// * Add starred books
+// * Add borrowed books
+// * Add borrow requests
+// * Design
+// ------------------------------------------------------------
+
 class BookshelfList extends Component {
   componentDidMount() {
     this.props.booksBookshelfFetch();
@@ -54,6 +62,7 @@ class BookshelfList extends Component {
   render() {
     return (
       <View>
+        <Text>My books</Text>
         {this.renderList()}
         <Button onPress={this.addBookScreen} title="Add Book" />
       </View>

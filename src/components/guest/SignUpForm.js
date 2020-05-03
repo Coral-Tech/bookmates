@@ -9,6 +9,10 @@ import {
   SignUpSubmit,
 } from "../../actions/SignUpActions";
 
+// -------------------------- TO DO  --------------------------
+// * Design
+// ------------------------------------------------------------
+
 class SignUpForm extends Component {
   onUsernameChange(text) {
     this.props.usernameAdd(text);

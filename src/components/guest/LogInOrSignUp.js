@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import { TouchableOpacity, View, Text, Button } from "react-native";
 
-import { Actions } from "react-native-router-flux";
+// -------------------------- TO DO  --------------------------
+// * Design
+// ------------------------------------------------------------
 
 class LoginOrSignUp extends Component {
   logIn = () => {
