@@ -11,25 +11,29 @@ class DiscoverList extends Component {
     this.props.booksDiscoverFetch();
   }
 
-  renderRow(book) {
-    return (
-      <View>
-        <Text>{this.props.data}</Text>
-        <Text></Text>
-      </View>
-    );
-  }
+  // renderRow(book) {
+  //   return (
+  //     <View>
+  //       <Text>{this.props.data}</Text>
+  //       <Text></Text>
+  //     </View>
+  //   );
+  // }
 
   renderList() {
     if (this.props.loading) {
       return <Spinner />;
     }
+    console.log("___________________________________");
+    console.log(this.props.data);
+    console.log("___________________________________");
     return (
-      <FlatList
-        data={this.props.data || []}
-        renderItem={(book) => this.renderRow(book)}
-        keyExtractor={(book) => book.uid}
-      />
+      // <FlatList
+      //   data={this.props.data || []}
+      //   renderItem={(book) => this.renderRow(book)}
+      //   keyExtractor={(book) => book.uid}
+      // />
+      <View></View>
     );
   }
 
@@ -39,8 +43,20 @@ class DiscoverList extends Component {
 }
 
 const mapStateToProps = (state) => {
+  const users = _.mapValues(state.discover.data || [], (user) => {
+    return {
+      books: user.books.owned_books,
+      name: user.user_data.name,
+      last_name: user.user_data.lastname,
+    };
+  });
+
+  const books = _.mapValues(users || [], (books) => {
+    return books.books;
+  });
+
   return {
-    data: state.discover.data,
+    data: books,
     loading: state.discover.loading,
   };
 };

@@ -19,26 +19,29 @@ class BookshelfList extends Component {
     // console.log(this.props.booklist);
     // console.log(book);
 
-    const {
-      book_name,
-      author_name,
-      cover,
-      datetime_added,
-    } = book.item.book_details;
-    return (
-      <View>
-        <Text>{book_name}</Text>
-        <Text>{author_name}</Text>
-        <Text>Added: {datetime_added}</Text>
-        <Text></Text>
-      </View>
-    );
+    if (book.item.book_details) {
+      const {
+        book_name,
+        author_name,
+        cover,
+        datetime_added,
+      } = book.item.book_details;
+      return (
+        <View>
+          <Text>{book_name}</Text>
+          <Text>{author_name}</Text>
+          <Text>Added: {datetime_added}</Text>
+          <Text></Text>
+        </View>
+      );
+    }
   }
 
   renderList() {
     if (this.props.loading) {
       return <Spinner />;
     }
+
     return (
       <FlatList
         data={this.props.booklist || []}
