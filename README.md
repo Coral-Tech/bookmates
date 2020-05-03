@@ -6,9 +6,9 @@
 
 Bookmates is a React Native application that connects people through the books they read.
 
-## What Problem does Boomates solve?
+<!-- ## What Problem does Boomates solve?
 
-_Work in Progress_
+_Work in Progress_ -->
 
 ### Use case
 
@@ -33,41 +33,41 @@ _Work in Progress_ -->
 
 ## Contributor setup
 
-1. Fork this repository and cd into it
+**1. Fork this repository and cd into it**
 
 ```
 git clone https://github.com/Coral-Tech/bookmates
 cd bookmates/`
 ```
 
-2. Create and activate a virtual environment
+**2. Create and activate a virtual environment**
 
-   - MacOS/Linux
+- MacOS/Linux
 
-   ```
-   virtualenv --no-site-packages env
-   source env/bin/activate
-   ```
+```
+virtualenv --no-site-packages env
+source env/bin/activate
+```
 
-   - Windows
+- Windows
 
-   ```
-   virtualenv env
-   .\env\Scripts\activate
-   ```
+```
+virtualenv env
+.\env\Scripts\activate
+```
 
-3. Install npm
+**3. Install npm**
 
 [Download link](https://nodejs.org/en/)
 
-4. Install Expo
+**4. Install Expo**
 
 `npm install -g expo-cli`
 
-5. Install required JS packages from packages.json
+**5. Install required JS packages from packages.json**
 
 `npm install`
 
-6. Run Expo
+**6. Run Expo**
 
 `expo start`
