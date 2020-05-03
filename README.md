@@ -1,14 +1,16 @@
 # Bookmates
 
-![GitHub Logo](/src/img/logo.png)
-
 ## What is Bookmates?
 
 Bookmates is a React Native application that connects people through the books they read.
 
+---
+
 <!-- ## What Problem does Boomates solve?
 
-_Work in Progress_ -->
+_Work in progress_ -->
+
+---
 
 ### Use case
 
@@ -17,21 +19,34 @@ _Work in Progress_ -->
 3. **Star** books you would like to read
 4. Send a **borrow request** to borrow books from other users
 
+---
+
+### Screens
+
+_Work in progress_
+
 ### Tools
 
 - React Native
 - JavaScript
 - Firebase
+<!--
 
-<!-- ### Requirements
+---
+
+### Requirements
 
 _Work in Progress_
+
+---
 
 ### Edge Cases
 
 _Work in Progress_ -->
 
-## Contributor setup
+---
+
+### Contributor setup
 
 **1. Fork this repository and cd into it**
 
@@ -62,12 +77,18 @@ virtualenv env
 
 **4. Install Expo**
 
-`npm install -g expo-cli`
+```
+npm install -g expo-cli
+```
 
 **5. Install required JS packages from packages.json**
 
-`npm install`
+```
+npm install
+```
 
 **6. Run Expo**
 
-`expo start`
+```
+expo start
+```
