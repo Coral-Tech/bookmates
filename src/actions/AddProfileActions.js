@@ -2,6 +2,7 @@ import {
   ADD_PROFILE_NAME,
   ADD_PROFILE_LASTNAME,
   ADD_PROFILE_LOCATION,
+  ADD_PROFILE_PHONE,
   ADD_PROFILE_SUBMIT,
 } from "./types";
 
@@ -23,6 +24,13 @@ export const profileLastNameAdd = (text) => {
   };
 };
 
+export const profilePhoneAdd = (text) => {
+  return {
+    type: ADD_PROFILE_PHONE,
+    payload: text,
+  };
+};
+
 export const profileLocationAdd = (text) => {
   return {
     type: ADD_PROFILE_LOCATION,
@@ -30,13 +38,18 @@ export const profileLocationAdd = (text) => {
   };
 };
 
-export const profileAddSubmit = ({ name, lastname, location }, navigateTo) => {
+export const profileAddSubmit = (
+  { name, lastname, phone, location },
+  navigateTo
+) => {
   const { currentUser } = Firebase.auth(); //Get the curruent user
 
   // User book
   const user_data = {
     name: name,
     lastname: lastname,
+    phone: phone,
+    email: currentUser.email,
     userid: currentUser.uid,
     user_created: new Date().toLocaleString(),
     location: location,

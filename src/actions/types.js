@@ -43,7 +43,9 @@ export const ADD_FAVORITE_BOOK = "add_favorite_book";
 //  Profile
 export const ADD_PROFILE_NAME = "add_profile_name";
 export const ADD_PROFILE_LASTNAME = "add_profile_last";
+export const ADD_PROFILE_PHONE = "add_profile_phone";
 export const ADD_PROFILE_LOCATION = "add_profile_location";
 export const ADD_PROFILE_SUBMIT = "add_profile_submit";
 
 export const FETCH_PROFILE_DATA = "fetch_profile";
+export const FETCH_PROFILE_SUCCESS = "fetch_profile_success";

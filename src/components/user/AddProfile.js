@@ -7,6 +7,7 @@ import {
   profileNameAdd,
   profileLastNameAdd,
   profileLocationAdd,
+  profilePhoneAdd,
   profileAddSubmit,
 } from "../../actions/AddProfileActions";
 
@@ -19,14 +20,18 @@ class AddBook extends Component {
     this.props.profileLastNameAdd(text);
   }
 
+  onPhoneChange(text) {
+    this.props.profilePhoneAdd(text);
+  }
+
   onLocationChange(text) {
     this.props.profileLocationAdd(text);
   }
 
   addProfilePress() {
-    const { name, lastname, location } = this.props;
+    const { name, lastname, phone, location } = this.props;
     this.props.profileAddSubmit(
-      { name, lastname, location },
+      { name, lastname, phone, location },
       this.props.navigation.navigate
     );
   }
@@ -54,6 +59,15 @@ class AddBook extends Component {
 
         <CardSection>
           <Input
+            label="Phone"
+            placeholder="00 00 0000 00000"
+            onChangeText={this.onPhoneChange.bind(this)}
+            value={this.props.phone}
+          />
+        </CardSection>
+
+        <CardSection>
+          <Input
             label="Location"
             placeholder="London"
             onChangeText={this.onLocationChange.bind(this)}
@@ -75,6 +89,7 @@ const mapStateToProps = (state) => {
     name: state.addprofile.name,
     lastname: state.addprofile.lastname,
     location: state.addprofile.location,
+    phone: state.addprofile.phone,
   };
 };
 
@@ -82,6 +97,7 @@ const mapDispatchToProps = {
   profileNameAdd,
   profileLastNameAdd,
   profileLocationAdd,
+  profilePhoneAdd,
   profileAddSubmit,
 };
 
