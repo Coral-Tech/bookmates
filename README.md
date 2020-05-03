@@ -6,9 +6,11 @@ Bookmates is a React Native application that connects people through the books t
 
 ---
 
-<!-- ## What Problem does Boomates solve?
+## What Problem does Boomates solve?
 
-_Work in progress_ -->
+_Work in progress_
+
+---
 
 ### Use case
 
