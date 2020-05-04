@@ -34,11 +34,16 @@ export const FETCH_DISCOVER_BOOKS = "fetch_discover_books"; // Done
 export const FETCH_DISCOVER_SUCCESS = "fetch_discover_success"; // Done
 export const FETCH_DISCOVER_FAILURE = "fetch_discover_failure";
 
+export const FETCH_STARRED_BOOKS = "fetch_starred_books"; // Done
+export const FETCH_STARRED_BOOKS_SUCCESS = "fetch_starred_books_success"; // Done
+export const STAR_BOOK_SUBMIT = "star_book_submit"; // Done
+export const STAR_BOOK_SUCCESS = "star_book_success"; // Done
+export const REMOVE_STAR_BOOK_SUBMIT = "remove_star_book_submit";
+export const REMOVE_STAR_BOOK_SUCCESS = "remove_star_book_success";
+
 export const BORROW_BOOK_ATTEMPT = "borrow_book_attempt";
 export const BORROW_BOOK_SUCCESS = "borrow_book_success";
 export const BORROW_BOOK_FAIL = "borrow_book_fail";
-
-export const ADD_FAVORITE_BOOK = "add_favorite_book";
 
 //  Profile
 export const ADD_PROFILE_NAME = "add_profile_name"; // Done

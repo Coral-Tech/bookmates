@@ -5,10 +5,14 @@ import { connect } from "react-redux";
 
 import { Spinner } from "../common";
 import { booksDiscoverFetch } from "../../actions/DiscoverActions";
+import {
+  starBook,
+  starBooksFetch,
+  removeBook,
+} from "../../actions/StarBookActions";
+import Firebase from "../../Firebase";
 
 // -------------------------- TO DO  --------------------------
-// * Show books - check the double mapping
-// * Add starring capability
 // * Add borrow request capability
 // * Design
 // ------------------------------------------------------------
@@ -18,16 +22,46 @@ class DiscoverList extends Component {
     this.props.booksDiscoverFetch();
   }
 
+  starOption = (item) => {
+    const book_details = {
+      author_name: item.author_name,
+      book_name: item.book_name,
+      cover: item.cover,
+      datetime_added: item.datetime_added,
+    };
+
+    this.props.starBook(item.book_id, book_details);
+    this.props.starBooksFetch();
+  };
+
+  removeStarOption = (item) => {
+    this.props.removeBook(item.book_id);
+    this.props.starBooksFetch();
+  };
+
+  renderStarButton(item) {
+    if (this.props.loading_star) {
+      return <Spinner />;
+    }
+    if (this.props.starred_books.includes(item.book_id)) {
+      return (
+        <Button onPress={() => this.removeStarOption(item)} title="Unstar" />
+      );
+    }
+    return <Button onPress={() => this.starOption(item)} title="Star" />;
+  }
+
   renderRow(item) {
-    const { book_name, author_name } = item.item.book;
-    const { name, lastname, location } = item.item.user;
+    const { book_name, author_name, book_id } = item.item.book;
+    const { name, lastname, location, userid } = item.item.user;
 
     return (
       <View>
         <Text>Book: {book_name}</Text>
         <Text>Author: {author_name}</Text>
         <Text>Owner: {name}</Text>
-
+        {this.renderStarButton(item.item.book)}
+        <Text></Text>
         <Text></Text>
       </View>
     );
@@ -37,8 +71,6 @@ class DiscoverList extends Component {
     if (this.props.loading) {
       return <Spinner />;
     }
-
-    console.log(this.props.data);
 
     return (
       <FlatList
@@ -60,7 +92,9 @@ const mapStateToProps = (state) => {
     (item) => {
       let result = {};
       if (typeof item.books !== "undefined") {
-        result[item.user_data.userid] = item;
+        if (item.user_data.userid !== Firebase.auth().currentUser.uid) {
+          result[item.user_data.userid] = item;
+        }
       }
       return Object.keys(result).length ? result : false;
     }
@@ -89,10 +123,24 @@ const mapStateToProps = (state) => {
     return books_mapped;
   });
 
+  const starred_book_id = _.flatMap(
+    state.star.starred_books || [],
+    (book, id) => {
+      return id;
+    }
+  );
+
   return {
     data: data_filtred_map,
     loading: state.discover.loading,
+    starred_books: starred_book_id,
+    loading_star: state.star.loading,
   };
 };
 
-export default connect(mapStateToProps, { booksDiscoverFetch })(DiscoverList);
+export default connect(mapStateToProps, {
+  booksDiscoverFetch,
+  starBook,
+  starBooksFetch,
+  removeBook,
+})(DiscoverList);

@@ -6,6 +6,7 @@ import BookshelfReducers from "./BookshelfReducers";
 import DiscoverReducers from "./DiscoverReducers";
 import AddProfileReducers from "./AddProfileReducers";
 import ProfileReducers from "./ProfileReducers";
+import StarBookReducers from "./StarBookReducers";
 
 export default combineReducers({
   login: LogInReducers,
@@ -15,4 +16,5 @@ export default combineReducers({
   discover: DiscoverReducers,
   addprofile: AddProfileReducers,
   profile: ProfileReducers,
+  star: StarBookReducers,
 });

@@ -5,10 +5,10 @@ import { connect } from "react-redux";
 
 import { Spinner } from "../common";
 import { booksBookshelfFetch } from "../../actions/BookshelfActions";
+import { starBooksFetch, removeBook } from "../../actions/StarBookActions";
 
 // -------------------------- TO DO  --------------------------
 // * Add edit to each owned book
-// * Add starred books
 // * Add borrowed books
 // * Add borrow requests
 // * Design
@@ -17,23 +17,19 @@ import { booksBookshelfFetch } from "../../actions/BookshelfActions";
 class BookshelfList extends Component {
   componentDidMount() {
     this.props.booksBookshelfFetch();
+    this.props.starBooksFetch();
   }
 
   addBookScreen = () => {
     this.props.navigation.navigate("bookshelfadd");
   };
 
-  renderRow(book) {
+  renderOwnedBooksRow(book) {
     // console.log(this.props.booklist);
     // console.log(book);
 
-    if (book.item.book_details) {
-      const {
-        book_name,
-        author_name,
-        cover,
-        datetime_added,
-      } = book.item.book_details;
+    if (book) {
+      const { book_name, author_name, cover, datetime_added } = book;
       return (
         <View>
           <Text>{book_name}</Text>
@@ -45,7 +41,7 @@ class BookshelfList extends Component {
     }
   }
 
-  renderList() {
+  renderOwnedBooks() {
     if (this.props.loading) {
       return <Spinner />;
     }
@@ -53,7 +49,41 @@ class BookshelfList extends Component {
     return (
       <FlatList
         data={this.props.booklist || []}
-        renderItem={(book) => this.renderRow(book)}
+        renderItem={(book) => this.renderOwnedBooksRow(book.item.book_details)}
+        keyExtractor={(book) => book.uid}
+      />
+    );
+  }
+
+  removeStarOption = (book) => {
+    this.props.removeBook(book.book_id);
+    this.props.starBooksFetch();
+  };
+
+  renderStarredBooksRow(book) {
+    if (book) {
+      const { book_name, author_name, cover, datetime_added } = book;
+      return (
+        <View>
+          <Text>{book_name}</Text>
+          <Text>{author_name}</Text>
+          <Text>Added: {datetime_added}</Text>
+          <Button onPress={() => this.removeStarOption(book)} title="Unstar" />
+          <Text></Text>
+        </View>
+      );
+    }
+  }
+
+  renderStarredBooks() {
+    if (this.props.loading_starred) {
+      return <Spinner />;
+    }
+
+    return (
+      <FlatList
+        data={this.props.starred_books || []}
+        renderItem={(book) => this.renderStarredBooksRow(book.item)}
         keyExtractor={(book) => book.uid}
       />
     );
@@ -62,23 +92,39 @@ class BookshelfList extends Component {
   render() {
     return (
       <View>
-        <Text>My books</Text>
-        {this.renderList()}
+        <Text>Owned books</Text>
+        {this.renderOwnedBooks()}
         <Button onPress={this.addBookScreen} title="Add Book" />
+        <Text></Text>
+        <Text>Starred books</Text>
+        {this.renderStarredBooks()}
       </View>
     );
   }
 }
 
 const mapStateToProps = (state) => {
-  const user_books = _.map(state.bookshelf.booklist || [], (val, uid) => {
+  const booklist_clean = _.map(state.bookshelf.booklist || [], (val, uid) => {
     return { ...val, uid };
   });
 
+  const starred_books_mapped = _.map(
+    state.star.starred_books || [],
+    (val, uid) => {
+      return { ...val, book_id: uid };
+    }
+  );
+
   return {
-    booklist: user_books,
+    booklist: booklist_clean,
     loading: state.bookshelf.loading,
+    starred_books: starred_books_mapped,
+    loading_starred: state.star.loading,
   };
 };
 
-export default connect(mapStateToProps, { booksBookshelfFetch })(BookshelfList);
+export default connect(mapStateToProps, {
+  booksBookshelfFetch,
+  starBooksFetch,
+  removeBook,
+})(BookshelfList);
