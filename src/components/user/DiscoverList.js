@@ -7,7 +7,7 @@ import { Spinner } from "../common";
 import { booksDiscoverFetch } from "../../actions/DiscoverActions";
 
 // -------------------------- TO DO  --------------------------
-// * Show books
+// * Show books - check the double mapping
 // * Add starring capability
 // * Add borrow request capability
 // * Design
@@ -18,29 +18,34 @@ class DiscoverList extends Component {
     this.props.booksDiscoverFetch();
   }
 
-  // renderRow(book) {
-  //   return (
-  //     <View>
-  //       <Text>{this.props.data}</Text>
-  //       <Text></Text>
-  //     </View>
-  //   );
-  // }
+  renderRow(item) {
+    const { book_name, author_name } = item.item.book;
+    const { name, lastname, location } = item.item.user;
+
+    return (
+      <View>
+        <Text>Book: {book_name}</Text>
+        <Text>Author: {author_name}</Text>
+        <Text>Owner: {name}</Text>
+
+        <Text></Text>
+      </View>
+    );
+  }
 
   renderList() {
     if (this.props.loading) {
       return <Spinner />;
     }
-    console.log("___________________________________");
+
     console.log(this.props.data);
-    console.log("___________________________________");
+
     return (
-      // <FlatList
-      //   data={this.props.data || []}
-      //   renderItem={(book) => this.renderRow(book)}
-      //   keyExtractor={(book) => book.uid}
-      // />
-      <View></View>
+      <FlatList
+        data={this.props.data || []}
+        renderItem={(item) => this.renderRow(item)}
+        keyExtractor={(item) => item.book.book_id}
+      />
     );
   }
 
@@ -50,20 +55,42 @@ class DiscoverList extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const users = _.mapValues(state.discover.data || [], (user) => {
-    return {
-      books: user.books.owned_books,
-      name: user.user_data.name,
-      last_name: user.user_data.lastname,
-    };
-  });
+  // Black magic by Aref
+  const data_filtered = Object.values(state.discover.data || []).filter(
+    (item) => {
+      let result = {};
+      if (typeof item.books !== "undefined") {
+        result[item.user_data.userid] = item;
+      }
+      return Object.keys(result).length ? result : false;
+    }
+  );
 
-  const books = _.mapValues(users || [], (books) => {
-    return books.books;
+  const data_filtred_map = _.flatMap(data_filtered, (user, id) => {
+    const { name, lastname, location, userid } = user.user_data;
+    const { owned_books } = user.books;
+
+    const books_mapped = _.flatMap(owned_books, (book, id) => {
+      const {
+        book_name,
+        author_name,
+        datetime_added,
+        cover,
+      } = book.book_details;
+
+      const book_id = id;
+
+      return {
+        user: { name, lastname, location, userid },
+        book: { book_id, book_name, author_name, datetime_added, cover },
+      };
+    });
+
+    return books_mapped;
   });
 
   return {
-    data: books,
+    data: data_filtred_map,
     loading: state.discover.loading,
   };
 };
