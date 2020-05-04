@@ -4,6 +4,7 @@ import {
   LOG_IN_SUBMIT,
   LOG_IN_SUCCESS,
   LOG_IN_FAIL,
+  PROFILE_SIGN_OUT,
 } from "../actions/types";
 
 const INITIAL_STATE = {
@@ -26,6 +27,8 @@ export default (state = INITIAL_STATE, action) => {
       return { ...state, user: action.payload, error: "", loading: false };
     case LOG_IN_FAIL:
       return { ...state, error: "Error", loading: false };
+    case PROFILE_SIGN_OUT:
+      return { INITIAL_STATE };
     default:
       return state;
   }

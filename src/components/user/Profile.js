@@ -4,7 +4,7 @@ import { View, Text, Button, FlatList } from "react-native";
 import { connect } from "react-redux";
 
 import { Spinner } from "../common";
-import { profileFetch } from "../../actions/ProfileActions";
+import { profileFetch, profileSignOut } from "../../actions/ProfileActions";
 
 // -------------------------- TO DO  --------------------------
 // * Design
@@ -16,6 +16,10 @@ class Profile extends Component {
   componentDidMount() {
     this.props.profileFetch();
   }
+
+  signOut = () => {
+    this.props.profileSignOut(this.props.navigation.navigate);
+  };
 
   renderProfile() {
     if (this.props.loading) {
@@ -41,6 +45,7 @@ class Profile extends Component {
       <View>
         <Text>Profile</Text>
         {this.renderProfile()}
+        <Button onPress={this.signOut} title="Sign Out" />
       </View>
     );
   }
@@ -53,4 +58,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { profileFetch })(Profile);
+export default connect(mapStateToProps, { profileFetch, profileSignOut })(
+  Profile
+);

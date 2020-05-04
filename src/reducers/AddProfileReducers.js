@@ -4,6 +4,7 @@ import {
   ADD_PROFILE_LOCATION,
   ADD_PROFILE_PHONE,
   ADD_PROFILE_SUBMIT,
+  PROFILE_SIGN_OUT,
 } from "../actions/types";
 
 const INITIAL_STATE = {
@@ -24,6 +25,8 @@ export default (state = INITIAL_STATE, action) => {
     case ADD_PROFILE_LOCATION:
       return { ...state, location: action.payload };
     case ADD_PROFILE_SUBMIT:
+      return { INITIAL_STATE };
+    case PROFILE_SIGN_OUT:
       return { INITIAL_STATE };
     default:
       return state;

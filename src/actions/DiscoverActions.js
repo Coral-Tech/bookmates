@@ -18,7 +18,7 @@ export const booksDiscoverFetch = () => {
         "value",
         (snapshot) => booksDiscoverFetchSuccess(dispatch, snapshot),
         function (error) {
-          console.error(error);
+          console.log(error);
         }
       );
   };

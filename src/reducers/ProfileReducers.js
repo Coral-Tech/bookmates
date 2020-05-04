@@ -1,4 +1,8 @@
-import { FETCH_PROFILE_DATA, FETCH_PROFILE_SUCCESS } from "../actions/types";
+import {
+  FETCH_PROFILE_DATA,
+  FETCH_PROFILE_SUCCESS,
+  PROFILE_SIGN_OUT,
+} from "../actions/types";
 
 const INITIAL_STATE = {
   user_data: null,
@@ -13,6 +17,9 @@ export default (state = INITIAL_STATE, action) => {
 
     case FETCH_PROFILE_SUCCESS:
       return { ...state, loading: false, user_data: action.payload };
+
+    case PROFILE_SIGN_OUT:
+      return { INITIAL_STATE };
 
     default:
       return state;

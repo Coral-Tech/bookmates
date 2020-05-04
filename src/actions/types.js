@@ -30,8 +30,8 @@ export const EDIT_BOOK_SUBMIT = "edit_book_submit";
 
 //  Discover
 
-export const FETCH_DISCOVER_BOOKS = "fetch_discover_books";
-export const FETCH_DISCOVER_SUCCESS = "fetch_discover_success";
+export const FETCH_DISCOVER_BOOKS = "fetch_discover_books"; // Done
+export const FETCH_DISCOVER_SUCCESS = "fetch_discover_success"; // Done
 export const FETCH_DISCOVER_FAILURE = "fetch_discover_failure";
 
 export const BORROW_BOOK_ATTEMPT = "borrow_book_attempt";
@@ -41,11 +41,13 @@ export const BORROW_BOOK_FAIL = "borrow_book_fail";
 export const ADD_FAVORITE_BOOK = "add_favorite_book";
 
 //  Profile
-export const ADD_PROFILE_NAME = "add_profile_name";
-export const ADD_PROFILE_LASTNAME = "add_profile_last";
-export const ADD_PROFILE_PHONE = "add_profile_phone";
-export const ADD_PROFILE_LOCATION = "add_profile_location";
-export const ADD_PROFILE_SUBMIT = "add_profile_submit";
+export const ADD_PROFILE_NAME = "add_profile_name"; // Done
+export const ADD_PROFILE_LASTNAME = "add_profile_last"; // Done
+export const ADD_PROFILE_PHONE = "add_profile_phone"; // Done
+export const ADD_PROFILE_LOCATION = "add_profile_location"; // Done
+export const ADD_PROFILE_SUBMIT = "add_profile_submit"; // Done
 
-export const FETCH_PROFILE_DATA = "fetch_profile";
-export const FETCH_PROFILE_SUCCESS = "fetch_profile_success";
+export const FETCH_PROFILE_DATA = "fetch_profile"; // Done
+export const FETCH_PROFILE_SUCCESS = "fetch_profile_success"; // Done
+
+export const PROFILE_SIGN_OUT = "profile_sign_out"; // Done

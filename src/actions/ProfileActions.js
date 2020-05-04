@@ -1,4 +1,8 @@
-import { FETCH_PROFILE_DATA, FETCH_PROFILE_SUCCESS } from "./types";
+import {
+  FETCH_PROFILE_DATA,
+  FETCH_PROFILE_SUCCESS,
+  PROFILE_SIGN_OUT,
+} from "./types";
 
 import Firebase from "../Firebase";
 
@@ -26,4 +30,14 @@ const profileFetchSuccess = (dispatch, snapshot) => {
     type: FETCH_PROFILE_SUCCESS,
     payload: snapshot.val(),
   });
+};
+
+export const profileSignOut = (navigateTo) => {
+  return (dispatch) => {
+    dispatch({ type: PROFILE_SIGN_OUT });
+
+    Firebase.database().goOffline();
+    Firebase.auth().signOut();
+    navigateTo("default");
+  };
 };

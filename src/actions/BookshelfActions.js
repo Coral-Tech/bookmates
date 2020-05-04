@@ -20,7 +20,7 @@ export const booksBookshelfFetch = () => {
         "value",
         (snapshot) => booksBookshelfFetchSuccess(dispatch, snapshot),
         function (error) {
-          console.error(error);
+          console.log(error);
         }
       );
   };
