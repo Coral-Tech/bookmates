@@ -16,10 +16,30 @@ import Profile from "./components/user/Profile";
 
 // Guest screens
 const guestScreens = {
-  default: { screen: LoginOrSignUp },
-  login: { screen: LoginForm },
-  signup: { screen: SignUpForm },
-  profileadd: { screen: AddProfile },
+  default: {
+    screen: LoginOrSignUp,
+    navigationOptions: {
+      headerShown: false,
+    },
+  },
+  login: {
+    screen: LoginForm,
+    navigationOptions: {
+      headerShown: false,
+    },
+  },
+  signup: {
+    screen: SignUpForm,
+    navigationOptions: {
+      headerShown: false,
+    },
+  },
+  profileadd: {
+    screen: AddProfile,
+    navigationOptions: {
+      headerShown: false,
+    },
+  },
 };
 const guestNavigation = createStackNavigator(guestScreens);
 
@@ -27,8 +47,18 @@ const guestNavigation = createStackNavigator(guestScreens);
 
 //   Bookshelf
 const bookshelfScreens = {
-  bookshelfBooks: { screen: BookshelfList },
-  bookshelfadd: { screen: AddBook },
+  bookshelfBooks: {
+    screen: BookshelfList,
+    navigationOptions: {
+      headerShown: false,
+    },
+  },
+  bookshelfadd: {
+    screen: AddBook,
+    navigationOptions: {
+      headerShown: false,
+    },
+  },
   // bookshelfedit: { screen: BookshelfList },
 };
 
@@ -36,16 +66,28 @@ const bookshelfNavigation = createStackNavigator(bookshelfScreens);
 
 const userScreen = {
   discover: { screen: DiscoverList },
-  bookshelf: { screen: bookshelfNavigation },
+  bookshelf: {
+    screen: bookshelfNavigation,
+    navigationOptions: {
+      gesturesEnabled: false,
+      headerVisible: false,
+    },
+  },
   profile: { screen: Profile },
 };
 const userNavigation = createBottomTabNavigator(userScreen);
 
 const rootNavigation = createStackNavigator({
-  guest: { screen: guestNavigation },
+  guest: {
+    screen: guestNavigation,
+    navigationOptions: {
+      gestureEnabled: false,
+      headerVisible: false,
+    },
+  },
   user: {
     screen: userNavigation,
-    navigationOptions: { headerLeft: () => null },
+    navigationOptions: { headerLeft: () => null, gestureEnabled: false },
   },
 });
 
