@@ -81,7 +81,7 @@ class AddBook extends Component {
 
         <Button
           onPress={this.addProfilePress.bind(this)}
-          title="Finsih sign up"
+          title="Finish sign up"
         />
       </View>
     );
