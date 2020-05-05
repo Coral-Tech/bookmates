@@ -2,6 +2,7 @@
   "rules": {
     "users": {
       ".read": "auth !== null",
+      ".write": "auth !== null",
       "$uid": {
         "user_data": {
           ".read": "auth !== null",
@@ -22,11 +23,11 @@
           },
           "borrowed_request_sent": {
             ".read": "$uid === auth.uid",
-            ".write": "$uid === null"
+            ".write": "auth !== null"
           },
           "borrowed_books_recieved": {
             ".read": "$uid === auth.uid",
-            ".write": "$uid === null"
+            ".write": "auth !== null"
           }
         }
       }

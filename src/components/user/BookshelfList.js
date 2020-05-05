@@ -10,7 +10,6 @@ import { starBooksFetch, removeBook } from "../../actions/StarBookActions";
 // -------------------------- TO DO  --------------------------
 // * Add edit to each owned book
 // * Add borrowed books
-// * Add borrow requests
 // * Design
 // ------------------------------------------------------------
 

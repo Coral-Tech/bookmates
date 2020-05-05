@@ -13,6 +13,7 @@ import BookshelfList from "./components/user/BookshelfList";
 import AddBook from "./components/user/AddBook";
 import DiscoverList from "./components/user/DiscoverList";
 import Profile from "./components/user/Profile";
+import BorrowList from "./components/user/BorrowList";
 
 // Guest screens
 const guestScreens = {
@@ -66,6 +67,7 @@ const bookshelfNavigation = createStackNavigator(bookshelfScreens);
 
 const userScreen = {
   discover: { screen: DiscoverList },
+  borrow: { screen: BorrowList },
   bookshelf: {
     screen: bookshelfNavigation,
     navigationOptions: {
