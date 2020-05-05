@@ -20,7 +20,7 @@ export const borrowedRequestsFetch = () => {
       .ref(`/users/${currentUser.uid}/books/borrowed_request_sent`)
       .on(
         "value",
-        (snapshot) => bororwRequestFetchSuccess(dispatch, snapshot),
+        (snapshot) => borrowRequestFetchSuccess(dispatch, snapshot),
         function (error) {
           console.log(error);
         }
@@ -28,17 +28,21 @@ export const borrowedRequestsFetch = () => {
   };
 };
 
-const bororwRequestFetchSuccess = (dispatch, snapshot) => {
+const borrowRequestFetchSuccess = (dispatch, snapshot) => {
   dispatch({
     type: FETCH_BORROWED_REQUESTS_SUCCESS,
     payload: snapshot.val(),
   });
 };
 
-//   // STAR BOOK
+//  BORROW BOOK
 
 export const borrowRequest = (id, book_item) => {
   const { currentUser } = Firebase.auth(); //Get the currient user
+
+  console.log("__________________________________");
+  console.log(book_item);
+  console.log("__________________________________");
 
   return (dispatch) => {
     dispatch({ type: BORROW_REQUEST_SUBMIT });
@@ -62,7 +66,7 @@ const borrowRequestSuccess = (dispatch) => {
   });
 };
 
-// REMOVE STAR BOOK
+// REMOVE BORROW BOOK
 
 export const removeBorrowRequest = (book_id, owner_id) => {
   const { currentUser } = Firebase.auth(); //Get the currient user

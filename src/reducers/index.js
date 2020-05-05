@@ -8,6 +8,7 @@ import AddProfileReducers from "./AddProfileReducers";
 import ProfileReducers from "./ProfileReducers";
 import StarBookReducers from "./StarBookReducers";
 import BorrowRequestReducers from "./BorrowRequestReducers";
+import BorrowRequestRecievedReducers from "./BorrowRequestRecievedReducers";
 
 export default combineReducers({
   login: LogInReducers,
@@ -19,4 +20,5 @@ export default combineReducers({
   profile: ProfileReducers,
   star: StarBookReducers,
   borrow_request: BorrowRequestReducers,
+  borrow_request_recieve: BorrowRequestRecievedReducers,
 });

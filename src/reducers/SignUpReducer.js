@@ -16,7 +16,6 @@ const INITIAL_STATE = {
 };
 
 export default (state = INITIAL_STATE, action) => {
-  console.log(action);
   switch (action.type) {
     case SIGN_UP_ADD_USERNAME:
       return { ...state, username: action.payload };

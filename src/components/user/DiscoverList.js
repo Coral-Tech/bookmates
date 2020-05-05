@@ -28,6 +28,8 @@ class DiscoverList extends Component {
     this.props.booksDiscoverFetch();
   }
 
+  // STAR
+
   starOption = (item) => {
     const book_details = {
       author_name: item.author_name,
@@ -57,6 +59,7 @@ class DiscoverList extends Component {
     return <Button onPress={() => this.starOption(item)} title="Star" />;
   }
 
+  // BORROW
   borrowOption = (item) => {
     const book_details = {
       author_name: item.book.author_name,
@@ -79,7 +82,7 @@ class DiscoverList extends Component {
     if (this.props.loading_borrowed) {
       return <Spinner />;
     }
-    console.log(item);
+
     if (this.props.borrow_request.includes(item.book.book_id)) {
       return (
         <Button
@@ -181,8 +184,6 @@ const mapStateToProps = (state) => {
       return id;
     }
   );
-
-  console.log(borrowed_request_id);
 
   return {
     data: data_filtred_map,

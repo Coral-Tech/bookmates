@@ -24,9 +24,6 @@ class BookshelfList extends Component {
   };
 
   renderOwnedBooksRow(book) {
-    // console.log(this.props.booklist);
-    // console.log(book);
-
     if (book) {
       const { book_name, author_name, cover, datetime_added } = book;
       return (
