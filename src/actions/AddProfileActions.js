@@ -46,13 +46,13 @@ export const profileAddSubmit = (
 
   // User book
   const user_data = {
-    name: name,
-    lastname: lastname,
+    name: name.toTitle(),
+    lastname: lastname.toTitle(),
     phone: phone,
     email: currentUser.email,
     userid: currentUser.uid,
     user_created: new Date().toLocaleString(),
-    location: location,
+    location: location.toTitle(),
   };
 
   return (dispatch) => {

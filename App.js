@@ -8,6 +8,12 @@ import reducers from "./src/reducers";
 import Firebase from "./src/Firebase";
 import Navigator from "./src/Router";
 
+String.prototype.toTitle = function () {
+  return this.replace(/(^|\s)\S/g, function (t) {
+    return t.toUpperCase();
+  });
+};
+
 class App extends Component {
   componentDidMount() {
     Firebase;

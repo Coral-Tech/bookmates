@@ -79,12 +79,13 @@ class BookshelfList extends Component {
     if (this.props.loading_starred) {
       return <Spinner />;
     }
+    console.log(this.props.starred_books);
 
     return (
       <FlatList
         data={this.props.starred_books || []}
         renderItem={(book) => this.renderStarredBooksRow(book.item)}
-        keyExtractor={(book) => book.uid}
+        keyExtractor={(book) => book.book_id}
       />
     );
   }

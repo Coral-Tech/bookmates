@@ -14,6 +14,12 @@ import {
 // * Add book cover
 // ------------------------------------------------------------
 
+String.prototype.toTitle = function () {
+  return this.replace(/(^|\s)\S/g, function (t) {
+    return t.toUpperCase();
+  });
+};
+
 class AddBook extends Component {
   onBookNameChange(text) {
     this.props.bookNameAdd(text);

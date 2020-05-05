@@ -12,7 +12,7 @@
       "backgroundColor": "#ffffff"
     },
     "privacy": "unlisted",
-    "description": "Bookmates is a React Native application that connects people through the books they read.",
+    "description": "Bookmates is a React Native application that connects people through the books they read. Check the project source code at: https://github.com/Coral-Tech/bookmates",
     "updates": {
       "fallbackToCacheTimeout": 0
     },

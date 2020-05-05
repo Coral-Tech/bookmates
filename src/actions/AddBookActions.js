@@ -28,8 +28,8 @@ export const addBookSubmit = ({ book_name, author_name }) => {
 
   // User book
   const book_details = {
-    book_name: book_name,
-    author_name: author_name,
+    book_name: book_name.toTitle(),
+    author_name: author_name.toTitle(),
     cover: "",
     datetime_added: new Date().toLocaleString(),
   };
