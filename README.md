@@ -32,6 +32,7 @@ _Work in progress_
 - React Native
 - JavaScript
 - Firebase
+- Redux
 <!--
 
 ---
