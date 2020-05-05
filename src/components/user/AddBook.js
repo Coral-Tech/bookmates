@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, Text, Button } from "react-native";
+import { View, Text, Button, Alert } from "react-native";
 import { Input, CardSection, Spinner } from "../common";
 import { connect } from "react-redux";
 
@@ -36,7 +36,7 @@ class AddBook extends Component {
         <CardSection>
           <Input
             label="Book Name"
-            placeholder="100 anos de soledad"
+            placeholder="Nineteen Eighty-Four"
             onChangeText={this.onBookNameChange.bind(this)}
             value={this.props.book_name}
           />
@@ -45,13 +45,18 @@ class AddBook extends Component {
         <CardSection>
           <Input
             label="Author"
-            placeholder="GGM"
+            placeholder="George Orwell"
             onChangeText={this.onAuthorNameChange.bind(this)}
             value={this.props.author_name}
           />
         </CardSection>
 
-        <Button onPress={() => {}} title="Add cover" />
+        <Button
+          onPress={() => {
+            Alert.alert("Not available yet");
+          }}
+          title="Add cover"
+        />
 
         <Button onPress={this.addBookPress.bind(this)} title="Add book" />
       </View>

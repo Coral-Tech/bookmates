@@ -27,7 +27,12 @@ export default (state = INITIAL_STATE, action) => {
     case SIGN_UP_SUCCESS:
       return { ...state, user: action.payload, error: "", loading: false };
     case SIGN_UP_FAIL:
-      return { ...state, error: "Error", loading: false };
+      return {
+        ...state,
+        error:
+          "Error, please make sure your password has at least 6 characters",
+        loading: false,
+      };
     case PROFILE_SIGN_OUT:
       return { INITIAL_STATE };
     default:

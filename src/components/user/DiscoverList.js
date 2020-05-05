@@ -59,7 +59,9 @@ class DiscoverList extends Component {
       <View>
         <Text>Book: {book_name}</Text>
         <Text>Author: {author_name}</Text>
-        <Text>Owner: {name}</Text>
+        <Text>
+          Owner: {name} {lastname}
+        </Text>
         {this.renderStarButton(item.item.book)}
         <Text></Text>
         <Text></Text>

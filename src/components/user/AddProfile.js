@@ -46,7 +46,7 @@ class AddBook extends Component {
         <CardSection>
           <Input
             label="Name"
-            placeholder="Sebastian"
+            placeholder="Winston"
             onChangeText={this.onNameChange.bind(this)}
             value={this.props.name}
           />
@@ -55,7 +55,7 @@ class AddBook extends Component {
         <CardSection>
           <Input
             label="Last Name"
-            placeholder="Montero"
+            placeholder="Smith"
             onChangeText={this.onLastNameChange.bind(this)}
             value={this.props.lastname}
           />
@@ -64,7 +64,7 @@ class AddBook extends Component {
         <CardSection>
           <Input
             label="Phone"
-            placeholder="00 00 0000 00000"
+            placeholder="+00 (0) 0000 000 000"
             onChangeText={this.onPhoneChange.bind(this)}
             value={this.props.phone}
           />
