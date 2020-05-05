@@ -20,7 +20,6 @@ import {
 import Firebase from "../../Firebase";
 
 // -------------------------- TO DO  --------------------------
-// * Add borrow request capability
 // * Design
 // ------------------------------------------------------------
 
