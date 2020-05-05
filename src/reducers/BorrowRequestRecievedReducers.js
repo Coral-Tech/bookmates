@@ -1,6 +1,7 @@
 import {
   FETCH_BORROWED_RECIEVED_REQUESTS,
   FETCH_BORROWED_RECIEVED_REQUESTS_SUCCESS,
+  PROFILE_SIGN_OUT,
 } from "../actions/types";
 
 const INITIAL_STATE = {
@@ -18,6 +19,8 @@ export default (state = INITIAL_STATE, action) => {
         loading: false,
         borrowed_books_request_recieved: action.payload,
       };
+    case PROFILE_SIGN_OUT:
+      return { INITIAL_STATE };
 
     default:
       return state;

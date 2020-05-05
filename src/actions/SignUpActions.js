@@ -32,6 +32,7 @@ export const SignUpSubmit = ({ username, password }, navigateTo) => {
         console.log(error);
         signupFail(dispatch);
       });
+    Firebase.database().goOnline();
   };
 };
 

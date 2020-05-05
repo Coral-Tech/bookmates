@@ -25,6 +25,9 @@
               "author_name": "author_name",
               "cover": "",
               "datetime_added": "new Date().toLocaleString()"
+            },
+            "book_status": {
+              "borrowed": false
             }
           }
         },

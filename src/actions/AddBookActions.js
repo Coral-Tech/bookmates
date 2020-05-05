@@ -23,7 +23,7 @@ export const bookAuthorAdd = (text) => {
   };
 };
 
-export const addBookSubmit = ({ book_name, author_name }) => {
+export const addBookSubmit = ({ book_name, author_name }, navigateTo) => {
   const { currentUser } = Firebase.auth(); //Get the currient user
 
   // User book
@@ -35,6 +35,7 @@ export const addBookSubmit = ({ book_name, author_name }) => {
   };
 
   return (dispatch) => {
+    navigateTo("bookshelfBooks");
     Firebase.database()
       .ref(`/users/${currentUser.uid}/books/owned_books`)
       .push({ book_details })

@@ -3,6 +3,7 @@ import {
   FETCH_STARRED_BOOKS_SUCCESS,
   REMOVE_STAR_BOOK_SUBMIT,
   STAR_BOOK_SUBMIT,
+  PROFILE_SIGN_OUT,
 } from "../actions/types";
 
 const INITIAL_STATE = {
@@ -20,6 +21,8 @@ export default (state = INITIAL_STATE, action) => {
       return { ...state, loading: true };
     case FETCH_STARRED_BOOKS_SUCCESS:
       return { ...state, loading: false, starred_books: action.payload };
+    case PROFILE_SIGN_OUT:
+      return { INITIAL_STATE };
 
     default:
       return state;

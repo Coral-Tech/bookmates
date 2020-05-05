@@ -14,12 +14,6 @@ import {
 // * Add book cover
 // ------------------------------------------------------------
 
-String.prototype.toTitle = function () {
-  return this.replace(/(^|\s)\S/g, function (t) {
-    return t.toUpperCase();
-  });
-};
-
 class AddBook extends Component {
   onBookNameChange(text) {
     this.props.bookNameAdd(text);
@@ -30,10 +24,12 @@ class AddBook extends Component {
   }
 
   addBookPress() {
-    this.props.navigation.navigate("bookshelfBooks");
     const { book_name, author_name } = this.props;
 
-    this.props.addBookSubmit({ book_name, author_name });
+    this.props.addBookSubmit(
+      { book_name, author_name },
+      this.props.navigation.navigate
+    );
   }
 
   render() {
