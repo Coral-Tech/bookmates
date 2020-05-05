@@ -22,11 +22,11 @@
           },
           "borrowed_request_sent": {
             ".read": "$uid === auth.uid",
-            ".write": "$uid === auth.uid"
+            ".write": "$uid === null"
           },
           "borrowed_books_recieved": {
             ".read": "$uid === auth.uid",
-            ".write": "$uid === auth.uid"
+            ".write": "$uid === null"
           }
         }
       }

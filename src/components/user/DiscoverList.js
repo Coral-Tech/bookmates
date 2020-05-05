@@ -10,6 +10,13 @@ import {
   starBooksFetch,
   removeBook,
 } from "../../actions/StarBookActions";
+
+import {
+  borrowedRequestsFetch,
+  borrowRequest,
+  removeBorrowRequest,
+} from "../../actions/BorrowRequestActions";
+
 import Firebase from "../../Firebase";
 
 // -------------------------- TO DO  --------------------------
@@ -51,6 +58,42 @@ class DiscoverList extends Component {
     return <Button onPress={() => this.starOption(item)} title="Star" />;
   }
 
+  borrowOption = (item) => {
+    const book_details = {
+      author_name: item.book.author_name,
+      book_name: item.book.book_name,
+      cover: item.book.cover,
+      datetime_added: item.book.datetime_added,
+      owner_uid: item.user.userid,
+    };
+
+    this.props.borrowRequest(item.book.book_id, book_details);
+    this.props.borrowedRequestsFetch();
+  };
+
+  removeBorrowOption = (item) => {
+    this.props.removeBorrowRequest(item.book.book_id, item.user.userid);
+    this.props.borrowedRequestsFetch();
+  };
+
+  renderBorrowButton(item) {
+    if (this.props.loading_borrowed) {
+      return <Spinner />;
+    }
+    console.log(item);
+    if (this.props.borrow_request.includes(item.book.book_id)) {
+      return (
+        <Button
+          onPress={() => this.removeBorrowOption(item)}
+          title="Remove Borrow Request"
+        />
+      );
+    }
+    return (
+      <Button onPress={() => this.borrowOption(item)} title="Borrow Request" />
+    );
+  }
+
   renderRow(item) {
     const { book_name, author_name, book_id } = item.item.book;
     const { name, lastname, location, userid } = item.item.user;
@@ -63,6 +106,7 @@ class DiscoverList extends Component {
           Owner: {name} {lastname}
         </Text>
         {this.renderStarButton(item.item.book)}
+        {this.renderBorrowButton(item.item)}
         <Text></Text>
         <Text></Text>
       </View>
@@ -132,11 +176,22 @@ const mapStateToProps = (state) => {
     }
   );
 
+  const borrowed_request_id = _.flatMap(
+    state.borrow_request.borrowed_books_request || [],
+    (book, id) => {
+      return id;
+    }
+  );
+
+  console.log(borrowed_request_id);
+
   return {
     data: data_filtred_map,
     loading: state.discover.loading,
     starred_books: starred_book_id,
     loading_star: state.star.loading,
+    borrow_request: borrowed_request_id,
+    loading_borrowed: state.borrow_request.loading,
   };
 };
 
@@ -145,4 +200,8 @@ export default connect(mapStateToProps, {
   starBook,
   starBooksFetch,
   removeBook,
+
+  borrowedRequestsFetch,
+  borrowRequest,
+  removeBorrowRequest,
 })(DiscoverList);

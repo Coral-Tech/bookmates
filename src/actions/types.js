@@ -34,16 +34,23 @@ export const FETCH_DISCOVER_BOOKS = "fetch_discover_books"; // Done
 export const FETCH_DISCOVER_SUCCESS = "fetch_discover_success"; // Done
 export const FETCH_DISCOVER_FAILURE = "fetch_discover_failure";
 
+// STAR
 export const FETCH_STARRED_BOOKS = "fetch_starred_books"; // Done
 export const FETCH_STARRED_BOOKS_SUCCESS = "fetch_starred_books_success"; // Done
 export const STAR_BOOK_SUBMIT = "star_book_submit"; // Done
 export const STAR_BOOK_SUCCESS = "star_book_success"; // Done
-export const REMOVE_STAR_BOOK_SUBMIT = "remove_star_book_submit";
-export const REMOVE_STAR_BOOK_SUCCESS = "remove_star_book_success";
+export const REMOVE_STAR_BOOK_SUBMIT = "remove_star_book_submit"; // Done
+export const REMOVE_STAR_BOOK_SUCCESS = "remove_star_book_success"; // Done
 
-export const BORROW_BOOK_ATTEMPT = "borrow_book_attempt";
-export const BORROW_BOOK_SUCCESS = "borrow_book_success";
-export const BORROW_BOOK_FAIL = "borrow_book_fail";
+// SENT BORROW REQUESTS
+
+export const FETCH_BORROWED_REQUESTS = "fetch_borrowed_book";
+export const FETCH_BORROWED_REQUESTS_SUCCESS = "fetch_borrowed_books_success";
+
+export const BORROW_REQUEST_SUBMIT = "borrow_request_submit";
+export const BORROW_REQUEST_SUCCESS = "borrow_request_success";
+export const REMOVE_BORROW_REQUEST_SUBMIT = "remove_borrow_request_submit";
+export const REMOVE_BORROW_REQUEST_SUCCESS = "remove_borrow_request_success";
 
 //  Profile
 export const ADD_PROFILE_NAME = "add_profile_name"; // Done
