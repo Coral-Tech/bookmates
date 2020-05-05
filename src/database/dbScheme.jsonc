@@ -1,6 +1,7 @@
 // User presses borrow button
-// borrow request quest sent to borrow requests
-// user can accept or remove
+// Borrow sent from User1 is sent and User2 recieves it in borrow recieved
+// User 2 accepts borrow request and book is added to borrowed books or deletes
+// borrowed request sent disappear
 
 {
   "users": {
@@ -60,7 +61,7 @@
             "author_name": "author_name",
             "cover": "",
             "datetime_borrowed": "new Date().toLocaleString()",
-            "owner_uid": "uid"
+            "borrower_id": "uid"
           }
         }
       }
