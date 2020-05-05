@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import { Spinner } from "../common";
 import { booksBookshelfFetch } from "../../actions/BookshelfActions";
 import { starBooksFetch, removeBook } from "../../actions/StarBookActions";
+import { profileFetch } from "../../actions/ProfileActions";
 
 // -------------------------- TO DO  --------------------------
 // * Add edit to each owned book
@@ -17,6 +18,7 @@ class BookshelfList extends Component {
   componentDidMount() {
     this.props.booksBookshelfFetch();
     this.props.starBooksFetch();
+    this.props.profileFetch();
   }
 
   addBookScreen = () => {
@@ -123,4 +125,5 @@ export default connect(mapStateToProps, {
   booksBookshelfFetch,
   starBooksFetch,
   removeBook,
+  profileFetch,
 })(BookshelfList);

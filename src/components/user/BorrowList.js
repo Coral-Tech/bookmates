@@ -32,12 +32,21 @@ class BorrowList extends Component {
 
   renderBorrowedRequestSentRow(book) {
     if (book) {
-      const { book_name, author_name, cover, datetime_added } = book;
+      const {
+        book_name,
+        author_name,
+        cover,
+        datetime_added,
+        name_owner,
+        lastname_owner,
+      } = book;
       return (
         <View>
           <Text>{book_name}</Text>
           <Text>{author_name}</Text>
-          <Text>Added: {datetime_added}</Text>
+          <Text>
+            Sent to: {name_owner} {lastname_owner}
+          </Text>
           <Button
             onPress={() => this.removeBorrowRequestSentOption(book)}
             title="Remove borrow request"
@@ -72,12 +81,21 @@ class BorrowList extends Component {
 
   renderBorrowedRequestRecievedRow(book) {
     if (book) {
-      const { book_name, author_name, cover, datetime_added } = book;
+      const {
+        book_name,
+        author_name,
+        cover,
+        datetime_added,
+        lastname_borrower,
+        name_borrower,
+      } = book;
       return (
         <View>
           <Text>{book_name}</Text>
           <Text>{author_name}</Text>
-          <Text>Added: {datetime_added}</Text>
+          <Text>
+            Sent by: {name_borrower} {lastname_borrower}
+          </Text>
           <Button
             onPress={() => this.removeBorrowRequestRecievedOption(book)}
             title="Remove request"
@@ -104,11 +122,12 @@ class BorrowList extends Component {
   render() {
     return (
       <View>
-        <Text>Borrow request sent</Text>
-        {this.renderBorrowedSent()}
-        <Text></Text>
         <Text>Borrow request recieved</Text>
         {this.renderBorrowedRecieved()}
+        <Text></Text>
+
+        <Text>Borrow request sent</Text>
+        {this.renderBorrowedSent()}
       </View>
     );
   }

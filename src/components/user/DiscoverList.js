@@ -67,6 +67,10 @@ class DiscoverList extends Component {
       cover: item.book.cover,
       datetime_added: item.book.datetime_added,
       owner_uid: item.user.userid,
+      name_owner: item.user.name,
+      lastname_owner: item.user.lastname,
+      name_user: this.props.logged_in_user.name,
+      lastname_user: this.props.logged_in_user.lastname,
     };
 
     this.props.borrowRequest(item.book.book_id, book_details);
@@ -192,6 +196,7 @@ const mapStateToProps = (state) => {
     loading_star: state.star.loading,
     borrow_request: borrowed_request_id,
     loading_borrowed: state.borrow_request.loading,
+    logged_in_user: state.profile.user_data,
   };
 };
 

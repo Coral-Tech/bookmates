@@ -21,6 +21,7 @@ export const borrowedRequestsFetch = () => {
       .on(
         "value",
         (snapshot) => borrowRequestFetchSuccess(dispatch, snapshot),
+
         function (error) {
           console.log(error);
         }
@@ -40,9 +41,37 @@ const borrowRequestFetchSuccess = (dispatch, snapshot) => {
 export const borrowRequest = (id, book_item) => {
   const { currentUser } = Firebase.auth(); //Get the currient user
 
-  console.log("__________________________________");
-  console.log(book_item);
-  console.log("__________________________________");
+  const {
+    author_name,
+    book_name,
+    cover,
+    datetime_added,
+    lastname_owner,
+    lastname_user,
+    name_owner,
+    name_user,
+    owner_uid,
+  } = book_item;
+
+  const book_request_sent = {
+    author_name,
+    book_name,
+    cover,
+    datetime_added,
+    name_borrower: name_user,
+    lastname_borrower: lastname_user,
+    borrower_uid: currentUser.uid,
+  };
+
+  const book_request_recieved = {
+    author_name,
+    book_name,
+    cover,
+    datetime_added,
+    name_owner,
+    lastname_owner,
+    owner_uid,
+  };
 
   return (dispatch) => {
     dispatch({ type: BORROW_REQUEST_SUBMIT });
@@ -51,11 +80,11 @@ export const borrowRequest = (id, book_item) => {
       .ref(
         `/users/${book_item.owner_uid}/books/borrowed_request_recieved/${id}`
       )
-      .set(book_item);
+      .set(book_request_sent);
 
     Firebase.database()
       .ref(`/users/${currentUser.uid}/books/borrowed_request_sent/${id}`)
-      .set(book_item)
+      .set(book_request_recieved)
       .then(() => borrowRequestSuccess(dispatch));
   };
 };
