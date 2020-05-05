@@ -19,11 +19,15 @@
           "borrowed_books": {
             ".read": "$uid === auth.uid",
             ".write": "$uid === auth.uid"
+          },
+          "borrowed_request_sent": {
+            ".read": "$uid === auth.uid",
+            ".write": "$uid === auth.uid"
+          },
+          "borrowed_books_recieved": {
+            ".read": "$uid === auth.uid",
+            ".write": "$uid === auth.uid"
           }
-        },
-        "borrow_requests": {
-          ".read": "$uid === auth.uid",
-          ".write": true
         }
       }
     }

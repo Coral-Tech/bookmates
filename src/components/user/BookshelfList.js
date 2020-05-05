@@ -79,7 +79,6 @@ class BookshelfList extends Component {
     if (this.props.loading_starred) {
       return <Spinner />;
     }
-    console.log(this.props.starred_books);
 
     return (
       <FlatList

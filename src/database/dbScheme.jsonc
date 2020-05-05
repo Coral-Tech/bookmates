@@ -1,7 +1,6 @@
-// A user recieved a borrow request. Once he accepts, then
-// the status of the Owner's book changed to borrowed: true and
-// Borrower's borrowed_books adds the book. Then a notification is sent
-// so they can meet each other.
+// User presses borrow button
+// borrow request quest sent to borrow requests
+// user can accept or remove
 
 {
   "users": {
@@ -25,10 +24,6 @@
               "author_name": "author_name",
               "cover": "",
               "datetime_added": "new Date().toLocaleString()"
-            },
-            "bookstatus": {
-              "borrowed": false,
-              "borrowed_by": "uid"
             }
           }
         },
@@ -49,11 +44,24 @@
             "datetime_borrowed": "new Date().toLocaleString()",
             "owner_uid": "uid"
           }
-        }
-      },
-      "borrow_requests": {
-        "book1": {
-          "accept": false
+        },
+        "borrowed_request_sent": {
+          "book4IdFromFirebase": {
+            "book_name": "book_name",
+            "author_name": "author_name",
+            "cover": "",
+            "datetime_borrowed": "new Date().toLocaleString()",
+            "owner_uid": "uid"
+          }
+        },
+        "borrowed_request_recieved": {
+          "book5IdFromFirebase": {
+            "book_name": "book_name",
+            "author_name": "author_name",
+            "cover": "",
+            "datetime_borrowed": "new Date().toLocaleString()",
+            "owner_uid": "uid"
+          }
         }
       }
     }
