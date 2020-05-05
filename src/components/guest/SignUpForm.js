@@ -56,8 +56,8 @@ class SignUpForm extends Component {
       <View>
         <CardSection>
           <Input
-            label="Username"
-            placeholder="username"
+            label="Email"
+            placeholder="email"
             onChangeText={this.onUsernameChange.bind(this)}
             value={this.props.username}
           />
