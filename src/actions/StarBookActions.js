@@ -38,6 +38,8 @@ const starBooksFetchSuccess = (dispatch, snapshot) => {
 // STAR BOOK
 
 export const starBook = (id, book_item) => {
+  console.log(book_item);
+
   const { currentUser } = Firebase.auth(); //Get the currient user
 
   return (dispatch) => {

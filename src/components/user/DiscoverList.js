@@ -32,6 +32,7 @@ class DiscoverList extends Component {
 
   starOption = (item) => {
     const book_details = {
+      added_by: item.added_by,
       author_name: item.author_name,
       book_name: item.book_name,
       cover: item.cover,
@@ -160,6 +161,7 @@ const mapStateToProps = (state) => {
 
     const books_mapped = _.flatMap(owned_books, (book, id) => {
       const {
+        added_by,
         book_name,
         author_name,
         datetime_added,
@@ -170,11 +172,25 @@ const mapStateToProps = (state) => {
 
       return {
         user: { name, lastname, location, userid },
-        book: { book_id, book_name, author_name, datetime_added, cover },
+        book: {
+          added_by,
+          book_id,
+          book_name,
+          author_name,
+          datetime_added,
+          cover,
+          status: book.status,
+        },
       };
     });
 
     return books_mapped;
+  });
+
+  const data_filtred_map_notBorrowed = data_filtred_map.filter((item) => {
+    return (
+      item.book.status === undefined || item.book.status.borrowed === false
+    );
   });
 
   const starred_book_id = _.flatMap(
@@ -192,7 +208,7 @@ const mapStateToProps = (state) => {
   );
 
   return {
-    data: data_filtred_map,
+    data: data_filtred_map_notBorrowed,
     loading: state.discover.loading,
     starred_books: starred_book_id,
     loading_star: state.star.loading,

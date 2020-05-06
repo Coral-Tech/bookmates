@@ -32,13 +32,21 @@ export const addBookSubmit = ({ book_name, author_name }, navigateTo) => {
     author_name: author_name.toTitle(),
     cover: "",
     datetime_added: new Date().toLocaleString(),
+    added_by: currentUser.uid,
+  };
+  const status = {
+    borrowed: false,
+    borrowed_by: [],
+    starred_by: [],
+    requested_by: [],
   };
 
   return (dispatch) => {
     navigateTo("bookshelfBooks");
+
     Firebase.database()
       .ref(`/users/${currentUser.uid}/books/owned_books`)
-      .push({ book_details })
+      .push({ book_details: book_details, status: status })
       .then(() => {
         dispatch({ type: ADD_BOOK_SUBMIT });
       });
