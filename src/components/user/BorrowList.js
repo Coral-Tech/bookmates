@@ -9,7 +9,11 @@ import {
   removeBorrowRequest,
 } from "../../actions/BorrowRequestActions";
 
-import { borrowedRecievedRequestsFetch } from "../../actions/BorrowRequestRecievedActions";
+import {
+  borrowedRecievedRequestsFetch,
+  removeBorrowRecievedRequest,
+  acceptBorrowRecievedRequest,
+} from "../../actions/BorrowRequestRecievedActions";
 
 // -------------------------- TO DO  --------------------------
 // * Remove requests the user dont want
@@ -23,7 +27,7 @@ class BorrowList extends Component {
     this.props.borrowedRecievedRequestsFetch();
   }
 
-  // Borrow Request Sent
+  // RENDER BORROW REQUEST SENT
 
   removeBorrowRequestSentOption = (book) => {
     this.props.removeBorrowRequest(book.book_id);
@@ -71,12 +75,16 @@ class BorrowList extends Component {
     );
   }
 
-  // Borrow Request Recieved
+  // RENDER BORROW REQUEST RECIEVED
 
   removeBorrowRequestRecievedOption = (book) => {
-    console.log("remove");
-    // this.props.removeBorrowRequest(book.book_id);
-    // this.props.borrowedRequestsFetch();
+    this.props.removeBorrowRecievedRequest(book);
+    this.props.borrowedRequestsFetch();
+  };
+
+  acceptBorrowRequestRecievedOption = (book) => {
+    this.props.acceptBorrowRecievedRequest(book);
+    this.props.borrowedRequestsFetch();
   };
 
   renderBorrowedRequestRecievedRow(book) {
@@ -96,6 +104,10 @@ class BorrowList extends Component {
           <Text>
             Sent by: {name_borrower} {lastname_borrower}
           </Text>
+          <Button
+            onPress={() => this.acceptBorrowRequestRecievedOption(book)}
+            title="Accept Request"
+          />
           <Button
             onPress={() => this.removeBorrowRequestRecievedOption(book)}
             title="Remove request"
@@ -118,6 +130,8 @@ class BorrowList extends Component {
       />
     );
   }
+
+  // RENDER ITEMS
 
   render() {
     return (
@@ -161,4 +175,6 @@ export default connect(mapStateToProps, {
   removeBorrowRequest,
   borrowedRequestsFetch,
   borrowedRecievedRequestsFetch,
+  removeBorrowRecievedRequest,
+  acceptBorrowRecievedRequest,
 })(BorrowList);

@@ -56,6 +56,15 @@ export const FETCH_BORROWED_RECIEVED_REQUESTS = "fetch_borrowed_recieved_book";
 export const FETCH_BORROWED_RECIEVED_REQUESTS_SUCCESS =
   "fetch_borrowed_recieved_books_success";
 
+export const ACCEPT_BORROW_REQUEST_RECIEVED_SUBMIT =
+  "borrow_request_recieved_submit";
+export const ACCEPT_BORROW_REQUEST_RECIEVED_SUCCESS =
+  "borrow_request_recieved_success";
+export const REMOVE_BORROW_REQUEST_RECIEVED_SUBMIT =
+  "remove_borrow_request_recieved_submit";
+export const REMOVE_BORROW_REQUEST_RECIEVED_SUCCESS =
+  "remove_borrow_request_recieved_success";
+
 //  Profile
 export const ADD_PROFILE_NAME = "add_profile_name"; // Done
 export const ADD_PROFILE_LASTNAME = "add_profile_last"; // Done

@@ -28,7 +28,7 @@ class DiscoverList extends Component {
     this.props.booksDiscoverFetch();
   }
 
-  // STAR
+  // RENDER STARRED BOOKS
 
   starOption = (item) => {
     const book_details = {
@@ -59,7 +59,8 @@ class DiscoverList extends Component {
     return <Button onPress={() => this.starOption(item)} title="Star" />;
   }
 
-  // BORROW
+  // RENDER BORROWED BOOKS
+
   borrowOption = (item) => {
     const book_details = {
       author_name: item.book.author_name,
@@ -100,6 +101,8 @@ class DiscoverList extends Component {
     );
   }
 
+  // RENDER ALL ITEMS
+
   renderRow(item) {
     const { book_name, author_name, book_id } = item.item.book;
     const { name, lastname, location, userid } = item.item.user;
@@ -139,7 +142,6 @@ class DiscoverList extends Component {
 }
 
 const mapStateToProps = (state) => {
-  // Black magic by Aref
   const data_filtered = Object.values(state.discover.data || []).filter(
     (item) => {
       let result = {};

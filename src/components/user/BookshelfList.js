@@ -25,6 +25,8 @@ class BookshelfList extends Component {
     this.props.navigation.navigate("bookshelfadd");
   };
 
+  // RENDER OWNED BOOKS
+
   renderOwnedBooksRow(book) {
     if (book) {
       const { book_name, author_name, cover, datetime_added } = book;
@@ -52,6 +54,8 @@ class BookshelfList extends Component {
       />
     );
   }
+
+  // RENDER STARRED BOOKS
 
   removeStarOption = (book) => {
     this.props.removeBook(book.book_id);
@@ -86,6 +90,8 @@ class BookshelfList extends Component {
       />
     );
   }
+
+  // RENDER
 
   render() {
     return (
