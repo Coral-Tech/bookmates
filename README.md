@@ -23,7 +23,7 @@ _Work in progress_
 
 ### Screens
 
-![Screens](src/assets/sample_screens.png)
+![](assets/sample_screens.png)
 
 ---
 
