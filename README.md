@@ -6,17 +6,11 @@ Bookmates is a React Native application that connects people through the books t
 
 ---
 
-## What Problem does Boomates solve?
-
-_Work in progress_
-
----
-
-### Use case
+### Use cases
 
 1. **Add books** that you are willing to share with other people near you
 2. Browse and **discover** books near you
-3. **Star** books you would like to read
+3. **Favorite** books you would like to read
 4. Send a **borrow request** to borrow books from other users
 
 ---
