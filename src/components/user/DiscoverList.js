@@ -155,11 +155,11 @@ const mapStateToProps = (state) => {
     }
   );
 
-  const data_filtred_map = _.flatMap(data_filtered, (user, id) => {
+  const data_filtred_map = _.flatMap(data_filtered || [], (user, id) => {
     const { name, lastname, location, userid } = user.user_data;
     const { owned_books } = user.books;
 
-    const books_mapped = _.flatMap(owned_books, (book, id) => {
+    const books_mapped = _.flatMap(owned_books || [], (book, id) => {
       const {
         added_by,
         book_name,

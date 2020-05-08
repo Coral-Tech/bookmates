@@ -21,6 +21,10 @@ class Profile extends Component {
     this.props.profileSignOut(this.props.navigation.navigate);
   };
 
+  editProfile = () => {
+    this.props.navigation.navigate("profileEdit");
+  };
+
   renderProfile() {
     if (this.props.loading) {
       return <Spinner />;
@@ -45,6 +49,7 @@ class Profile extends Component {
       <View>
         <Text>Profile</Text>
         {this.renderProfile()}
+        <Button onPress={this.editProfile} title="Edit Profile" />
         <Button onPress={this.signOut} title="Sign Out" />
       </View>
     );

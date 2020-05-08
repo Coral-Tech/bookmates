@@ -9,6 +9,7 @@ import ProfileReducers from "./ProfileReducers";
 import StarBookReducers from "./StarBookReducers";
 import BorrowRequestReducers from "./BorrowRequestReducers";
 import BorrowRequestRecievedReducers from "./BorrowRequestRecievedReducers";
+import EditProfileReducers from "./EditProfileReducers";
 
 export default combineReducers({
   login: LogInReducers,
@@ -17,6 +18,7 @@ export default combineReducers({
   bookshelf: BookshelfReducers,
   discover: DiscoverReducers,
   addprofile: AddProfileReducers,
+  editprofile: EditProfileReducers,
   profile: ProfileReducers,
   star: StarBookReducers,
   borrow_request: BorrowRequestReducers,

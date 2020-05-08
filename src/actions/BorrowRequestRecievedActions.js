@@ -72,28 +72,29 @@ export const acceptBorrowRecievedRequest = (book) => {
   return (dispatch) => {
     dispatch({ type: ACCEPT_BORROW_REQUEST_RECIEVED_SUBMIT });
 
-    console.log("accept");
-
-    Firebase.database()
+    Firebase.database() // Change owner's borrow status to true
       .ref(`/users/${currentUser.uid}/books/owned_books/${book.book_id}/status`)
-      .set({ borrowed: true });
-
-    Firebase.database()
-      .ref(
-        `/users/${currentUser.uid}/books/borrowed_request_recieved/${book.book_id}`
-      )
-      .remove();
-
-    Firebase.database()
-      .ref(
-        `/users/${book.borrower_uid}/books/borrowed_request_sent/${book.book_id}`
-      )
-      .remove();
-
-    Firebase.database()
-      .ref(`/users/${book.borrower_uid}/books/borrowed_books/${book.book_id}`)
-      .set(book)
-      .then(() => acceptBorrowRecievedSuccess(dispatch));
+      .set({ borrowed: true })
+      .then(
+        Firebase.database() // Change add book to owner's borrowed_books list
+          .ref(`/users/${currentUser.uid}/books/borrowed_books/${book.book_id}`)
+          .set(book)
+          .then(
+            Firebase.database() // Remove book from owners requests recieved
+              .ref(
+                `/users/${currentUser.uid}/books/borrowed_request_recieved/${book.book_id}`
+              )
+              .remove()
+              .then(
+                Firebase.database() // Remove book from borrower's requests sent
+                  .ref(
+                    `/users/${book.borrower_uid}/books/borrowed_request_sent/${book.book_id}`
+                  )
+                  .remove()
+                  .then(() => acceptBorrowRecievedSuccess(dispatch))
+              )
+          )
+      );
   };
 };
 

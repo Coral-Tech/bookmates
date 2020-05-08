@@ -15,6 +15,8 @@ import DiscoverList from "./components/user/DiscoverList";
 import Profile from "./components/user/Profile";
 import BorrowList from "./components/user/BorrowList";
 
+import EditProfile from "./components/user/EditProfile";
+
 // Guest screens
 const guestScreens = {
   default: {
@@ -63,7 +65,23 @@ const bookshelfScreens = {
   // bookshelfedit: { screen: BookshelfList },
 };
 
+const profileScreens = {
+  profileDisplay: {
+    screen: Profile,
+    navigationOptions: {
+      headerShown: false,
+    },
+  },
+  profileEdit: {
+    screen: EditProfile,
+    navigationOptions: {
+      headerShown: false,
+    },
+  },
+};
+
 const bookshelfNavigation = createStackNavigator(bookshelfScreens);
+const profileNavigation = createStackNavigator(profileScreens);
 
 const userScreen = {
   discover: { screen: DiscoverList },
@@ -75,7 +93,13 @@ const userScreen = {
       headerVisible: false,
     },
   },
-  profile: { screen: Profile },
+  profile: {
+    screen: profileNavigation,
+    navigationOptions: {
+      gesturesEnabled: false,
+      headerVisible: false,
+    },
+  },
 };
 const userNavigation = createBottomTabNavigator(userScreen);
 

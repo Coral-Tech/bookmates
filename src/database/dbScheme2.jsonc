@@ -1,0 +1,43 @@
+{
+  "users": {
+    "uId": {
+      "u_name": "",
+      "u_lastname": "",
+      "u_created": "",
+      "u_phone": "",
+      "u_location": ""
+    }
+  },
+  "books": {
+    "bId": {
+      "b_name": "",
+      "b_author": "",
+      "b_created": "",
+      "b_cover": ""
+    }
+  },
+  "book_ownership": {
+    "uId_bId": {
+      "userId": "",
+      "bookId": ""
+    }
+  },
+  "book_starring": {
+    "uId_bId": {
+      "userId": "",
+      "bookId": ""
+    }
+  },
+  "book_borrow_requests": {
+    "uId_bId": {
+      "userId": "",
+      "bookId": ""
+    }
+  },
+  "borrowed_books": {
+    "uId_bId": {
+      "userId": "",
+      "bookId": ""
+    }
+  }
+}

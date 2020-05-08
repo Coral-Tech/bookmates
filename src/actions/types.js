@@ -76,3 +76,18 @@ export const FETCH_PROFILE_DATA = "fetch_profile"; // Done
 export const FETCH_PROFILE_SUCCESS = "fetch_profile_success"; // Done
 
 export const PROFILE_SIGN_OUT = "profile_sign_out"; // Done
+
+// Edit Profile
+
+export const EDIT_FETCH_PROFILE_DATA = "edit_fetch_profile_data"; // Done
+export const EDIT_SUCCESS_FETCH_PROFILE_DATA =
+  "edit_success_fetch_profile_data"; // Done
+
+export const EDIT_PROFILE_NAME = "edit_profile_name"; // Done
+export const EDIT_PROFILE_LASTNAME = "edit_profile_lastname"; // Done
+export const EDIT_PROFILE_EMAIL = "edit_profile_email"; // Done
+export const EDIT_PROFILE_PHONE = "edit_profile_phone"; // Done
+export const EDIT_PROFILE_LOCATION = "edit_profile_location"; // Done
+export const EDIT_PROFILE_SUBMIT = "edit_profile_submit"; // Done
+export const EDIT_PROFILE_SUBMIT_SUCCESS = "edit_profile_submit_success"; // Done
+export const EDIT_PROFILE_PASSWORD = "edit_profile_password"; // Done
