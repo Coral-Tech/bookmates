@@ -27,19 +27,38 @@ Bookmates is a React Native application that connects people through the books t
 - JavaScript
 - Firebase
 - Redux
-<!--
 
 ---
 
-### Requirements
+### Use Cases
 
-_Work in Progress_
+#### ADD BOOK PROCESS
 
----
+1. User1 adds book, and the book is added to **/users/U1/lending_books/available_books**, **/users/U1/lending_books/all_books** and under **/books**
 
-### Edge Cases
+#### STAR PROCESS
 
-_Work in Progress_ -->
+1. User2 stars a book and the book is added in **/users/U2/borrowing_books/starred_books**
+2. User2 removes star and the book is removed from **/users/U2/borrowing_books/starred_books**
+
+#### BORROW PROCESS
+
+1. User2 requests to borrow book. Book is added to **/users/U2/borrowing_books/request_to_borrow_books** and to **/users/U1/lending_books/borrow_request_recieved**
+
+- Lender options (User1) - accept request, reject request
+- Borrower options (User2) - cancel request
+
+2. User1 accepts borrow request. Books is added to **/users/U1/lending_books/borrow_request_accepted**, to **/users/U2/borrowing_books/pickup_books** and change status to **/books/b_id/available:false**. Notification is sent with lender contact information
+
+- Lender options (User1) - cancel pickup
+- Borrower options (User2) - cancel pickup, mark picked up
+
+3. User2 picks up the book and book is changed to **/users/U1/lending_books/lent_books** and to **/users/U2/borrowing_books/borrowed_books**
+
+- Lender options (User1) - mark returned
+- Borrower options (User2) - mark returned
+
+4. Any user can mark return and book is moved to **/users/U1/lending_books/available_books** removed from User2
 
 ---
 
