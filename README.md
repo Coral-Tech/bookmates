@@ -10,7 +10,7 @@ Bookmates is a React Native application that connects people through the books t
 
 1. **Add books** that you are willing to share with other people near you
 2. Browse and **discover** books near you
-3. **Favorite** books you would like to read
+3. **Star** books you would like to read
 4. Send a **borrow request** to borrow books from other users
 
 ---
