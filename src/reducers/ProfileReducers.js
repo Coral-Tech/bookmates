@@ -5,7 +5,7 @@ import {
 } from "../actions/types";
 
 const INITIAL_STATE = {
-  user_data: null,
+  u_details: null,
   loading: false,
   error: "",
 };
@@ -16,7 +16,7 @@ export default (state = INITIAL_STATE, action) => {
       return { ...state, loading: true, error: "" };
 
     case FETCH_PROFILE_SUCCESS:
-      return { ...state, loading: false, user_data: action.payload };
+      return { ...state, loading: false, u_details: action.payload };
 
     case PROFILE_SIGN_OUT:
       return { INITIAL_STATE };

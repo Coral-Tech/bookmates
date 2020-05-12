@@ -19,7 +19,7 @@ export const profileFetch = () => {
     dispatch({ type: EDIT_FETCH_PROFILE_DATA });
 
     Firebase.database()
-      .ref(`/users/${currentUser.uid}/user_data`)
+      .ref(`/users/${currentUser.uid}/u_details`)
       .on(
         "value",
         (snapshot) => profileFetchSuccess(dispatch, snapshot),
@@ -79,7 +79,7 @@ export const phoneChange = (text) => {
   };
 };
 
-export const editProfileSubmit = (user, password, navigateTo) => {
+export const editProfileSubmit = (u_details_new, password, navigateTo) => {
   const { currentUser } = Firebase.auth();
 
   console.log(password);
@@ -87,17 +87,19 @@ export const editProfileSubmit = (user, password, navigateTo) => {
   return (dispatch) => {
     dispatch({ type: EDIT_PROFILE_SUBMIT });
 
-    Firebase.database().ref(`/users/${currentUser.uid}/user_data`).set(user);
+    Firebase.database()
+      .ref(`/users/${currentUser.uid}/u_details`)
+      .set(u_details_new);
 
     Firebase.auth()
       .signInWithEmailAndPassword(currentUser.email, password)
       .then(function (userCredential) {
-        userCredential.user.updateEmail(user.email);
+        userCredential.user.updateEmail(u_details_new.u_email);
       });
 
     dispatch({
       type: EDIT_PROFILE_SUBMIT_SUCCESS,
-      payload: user,
+      payload: u_details_new,
     });
     navigateTo("profileDisplay");
   };

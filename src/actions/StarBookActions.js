@@ -17,7 +17,7 @@ export const starBooksFetch = () => {
     dispatch({ type: FETCH_STARRED_BOOKS });
 
     Firebase.database()
-      .ref(`/users/${currentUser.uid}/books/starred_books`)
+      .ref(`/users/${currentUser.uid}/borrowing_books/starred_books`)
       .on(
         "value",
         (snapshot) => starBooksFetchSuccess(dispatch, snapshot),
@@ -37,17 +37,15 @@ const starBooksFetchSuccess = (dispatch, snapshot) => {
 
 // STAR BOOK
 
-export const starBook = (id, book_item) => {
-  console.log(book_item);
-
+export const starBook = (b_id, b_details) => {
   const { currentUser } = Firebase.auth(); //Get the currient user
 
   return (dispatch) => {
     dispatch({ type: STAR_BOOK_SUBMIT });
 
     Firebase.database()
-      .ref(`/users/${currentUser.uid}/books/starred_books/${id}`)
-      .set(book_item)
+      .ref(`/users/${currentUser.uid}/borrowing_books/starred_books/${b_id}`)
+      .set(b_details)
       .then(() => starBookSuccess(dispatch));
   };
 };
@@ -60,14 +58,14 @@ const starBookSuccess = (dispatch) => {
 
 // REMOVE STAR BOOK
 
-export const removeBook = (id) => {
+export const removeBook = (b_id) => {
   const { currentUser } = Firebase.auth(); //Get the currient user
 
   return (dispatch) => {
     dispatch({ type: REMOVE_STAR_BOOK_SUBMIT });
 
     Firebase.database()
-      .ref(`/users/${currentUser.uid}/books/starred_books/${id}`)
+      .ref(`/users/${currentUser.uid}/borrowing_books/starred_books/${b_id}`)
       .remove()
       .then(() => removeBookSuccess(dispatch));
   };

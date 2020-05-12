@@ -8,22 +8,22 @@ import {
 } from "../actions/types";
 
 const INITIAL_STATE = {
-  name: "",
-  lastname: "",
-  location: "",
-  phone: "",
+  u_name: "",
+  u_lastname: "",
+  u_location: "",
+  u_phone: "",
 };
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case ADD_PROFILE_NAME:
-      return { ...state, name: action.payload };
+      return { ...state, u_name: action.payload };
     case ADD_PROFILE_LASTNAME:
-      return { ...state, lastname: action.payload };
+      return { ...state, u_lastname: action.payload };
     case ADD_PROFILE_PHONE:
-      return { ...state, phone: action.payload };
+      return { ...state, u_phone: action.payload };
     case ADD_PROFILE_LOCATION:
-      return { ...state, location: action.payload };
+      return { ...state, u_location: action.payload };
     case ADD_PROFILE_SUBMIT:
       return { INITIAL_STATE };
     case PROFILE_SIGN_OUT:

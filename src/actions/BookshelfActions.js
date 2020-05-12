@@ -1,7 +1,9 @@
+import _ from "lodash";
 import {
   FETCH_PERSONAL_BOOKS,
   FETCH_PERSONAL_SUCCESS,
   FETCH_PERSONAL_FAILURE,
+  FETCH_PERSONAL_BOOKS_INDIVIDUAL,
 } from "./types";
 
 import Firebase from "../Firebase";
@@ -15,12 +17,12 @@ export const booksBookshelfFetch = () => {
     dispatch({ type: FETCH_PERSONAL_BOOKS });
 
     Firebase.database()
-      .ref(`/users/${currentUser.uid}/books/owned_books`)
+      .ref(`/users/${currentUser.uid}/lending_books/all_books`)
       .on(
         "value",
         (snapshot) => booksBookshelfFetchSuccess(dispatch, snapshot),
         function (error) {
-          console.log(error);
+          console.error(error);
         }
       );
   };

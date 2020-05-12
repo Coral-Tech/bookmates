@@ -62,6 +62,12 @@ const bookshelfScreens = {
       headerShown: false,
     },
   },
+  borrow: {
+    screen: BorrowList,
+    navigationOptions: {
+      headerShown: false,
+    },
+  },
   // bookshelfedit: { screen: BookshelfList },
 };
 
@@ -85,7 +91,6 @@ const profileNavigation = createStackNavigator(profileScreens);
 
 const userScreen = {
   discover: { screen: DiscoverList },
-  borrow: { screen: BorrowList },
   bookshelf: {
     screen: bookshelfNavigation,
     navigationOptions: {

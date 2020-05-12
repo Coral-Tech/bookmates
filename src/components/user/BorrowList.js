@@ -136,11 +136,17 @@ class BorrowList extends Component {
   render() {
     return (
       <View>
-        <Text>Borrow request recieved</Text>
+        <Button
+          onPress={() => {
+            this.props.navigation.navigate("bookshelfBooks");
+          }}
+          title="Bookshelf"
+        />
+        <Text>Borrow requests </Text>
         {this.renderBorrowedRecieved()}
         <Text></Text>
 
-        <Text>Borrow request sent</Text>
+        <Text>Borrowed books</Text>
         {this.renderBorrowedSent()}
       </View>
     );

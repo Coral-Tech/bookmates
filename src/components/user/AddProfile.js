@@ -33,9 +33,9 @@ class AddBook extends Component {
   }
 
   addProfilePress() {
-    const { name, lastname, phone, location } = this.props;
+    const { u_name, u_lastname, u_phone, u_location } = this.props;
     this.props.profileAddSubmit(
-      { name, lastname, phone, location },
+      { u_name, u_lastname, u_phone, u_location },
       this.props.navigation.navigate
     );
   }
@@ -48,7 +48,7 @@ class AddBook extends Component {
             label="Name"
             placeholder="Winston"
             onChangeText={this.onNameChange.bind(this)}
-            value={this.props.name}
+            value={this.props.u_name}
           />
         </CardSection>
 
@@ -57,7 +57,7 @@ class AddBook extends Component {
             label="Last Name"
             placeholder="Smith"
             onChangeText={this.onLastNameChange.bind(this)}
-            value={this.props.lastname}
+            value={this.props.u_lastname}
           />
         </CardSection>
 
@@ -66,7 +66,7 @@ class AddBook extends Component {
             label="Phone"
             placeholder="+00 (0) 0000 000 000"
             onChangeText={this.onPhoneChange.bind(this)}
-            value={this.props.phone}
+            value={this.props.u_phone}
           />
         </CardSection>
 
@@ -75,7 +75,7 @@ class AddBook extends Component {
             label="Location"
             placeholder="London"
             onChangeText={this.onLocationChange.bind(this)}
-            value={this.props.location}
+            value={this.props.u_location}
           />
         </CardSection>
 
@@ -90,10 +90,10 @@ class AddBook extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    name: state.addprofile.name,
-    lastname: state.addprofile.lastname,
-    location: state.addprofile.location,
-    phone: state.addprofile.phone,
+    u_name: state.addprofile.u_name,
+    u_lastname: state.addprofile.u_lastname,
+    u_location: state.addprofile.u_location,
+    u_phone: state.addprofile.u_phone,
   };
 };
 

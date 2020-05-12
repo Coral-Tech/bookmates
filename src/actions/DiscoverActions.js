@@ -13,7 +13,7 @@ export const booksDiscoverFetch = () => {
     dispatch({ type: FETCH_DISCOVER_BOOKS });
 
     Firebase.database()
-      .ref(`users`)
+      .ref(`books`)
       .on(
         "value",
         (snapshot) => booksDiscoverFetchSuccess(dispatch, snapshot),

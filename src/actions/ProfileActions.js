@@ -13,7 +13,7 @@ export const profileFetch = () => {
     dispatch({ type: FETCH_PROFILE_DATA });
 
     Firebase.database()
-      .ref(`/users/${currentUser.uid}/user_data`)
+      .ref(`/users/${currentUser.uid}/u_details`)
       .on(
         "value",
         (snapshot) => profileFetchSuccess(dispatch, snapshot),

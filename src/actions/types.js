@@ -15,6 +15,8 @@ export const SIGN_UP_FAIL = "sign_up_fail"; // Done
 //  Bookshelf
 
 export const FETCH_PERSONAL_BOOKS = "fetch_personal_books"; // Done
+export const FETCH_PERSONAL_BOOKS_INDIVIDUAL =
+  "fetch_personal_books_individual"; // Done
 export const FETCH_PERSONAL_SUCCESS = "fetch_personal_success"; // Done
 export const FETCH_PERSONAL_FAILURE = "fetch_personal_failure"; // Done
 

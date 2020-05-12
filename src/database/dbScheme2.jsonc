@@ -1,6 +1,6 @@
 {
   "users": {
-    "Sebastian": {
+    "u_id": {
       "u_details": {
         "u_name": "u_name",
         "u_lastname": "u_lastname",
@@ -36,7 +36,7 @@
   }
 }
 
-// book object should be book_id: { owner_id, stranger_id }
+// book object should be book_id: { lender_id, borrower_id }
 
 // ADD BOOK PROCESS
 // User1 adds book, and it is added under /users/U1/lending_books/available_books,  /users/U1/lending_books/all_books and under /books

@@ -13,7 +13,6 @@ import {
   editProfileSubmit,
   passwordSubmit,
 } from "../../actions/EditProfileActions";
-import { HitTestResultTypes } from "expo/build/AR";
 
 // -------------------------- TO DO  --------------------------
 // * All
@@ -50,13 +49,20 @@ class EditProfile extends Component {
   }
 
   editSubmitPress() {
-    const { email, lastname, location, name, phone, password } = this.props;
-    const user_data = { email, lastname, location, name, phone };
+    const {
+      u_email,
+      u_lastname,
+      u_location,
+      u_name,
+      u_phone,
+      password,
+    } = this.props;
+    const u_details_new = { u_email, u_lastname, u_location, u_name, u_phone };
 
     console.log(password);
 
     this.props.editProfileSubmit(
-      user_data,
+      u_details_new,
       password,
       this.props.navigation.navigate
     );
@@ -86,7 +92,7 @@ class EditProfile extends Component {
             label="Name"
             placeholder=""
             onChangeText={this.onNameChange.bind(this)}
-            value={this.props.name}
+            value={this.props.u_name}
           />
         </CardSection>
         <CardSection>
@@ -94,7 +100,7 @@ class EditProfile extends Component {
             label="Lastname"
             placeholder=""
             onChangeText={this.onLastNameChange.bind(this)}
-            value={this.props.lastname}
+            value={this.props.u_lastname}
           />
         </CardSection>
         <CardSection>
@@ -102,7 +108,7 @@ class EditProfile extends Component {
             label="Email"
             placeholder=""
             onChangeText={this.onEmailChange.bind(this)}
-            value={this.props.email}
+            value={this.props.u_email}
           />
         </CardSection>
 
@@ -111,7 +117,7 @@ class EditProfile extends Component {
             label="Phone"
             placeholder=""
             onChangeText={this.onPhoneChange.bind(this)}
-            value={this.props.phone}
+            value={this.props.u_phone}
           />
         </CardSection>
 
@@ -120,7 +126,7 @@ class EditProfile extends Component {
             label="Location"
             placeholder=""
             onChangeText={this.onLocationChange.bind(this)}
-            value={this.props.location}
+            value={this.props.u_location}
           />
         </CardSection>
 
@@ -143,11 +149,11 @@ class EditProfile extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    name: state.editprofile.name,
-    lastname: state.editprofile.lastname,
-    email: state.editprofile.email,
-    phone: state.editprofile.phone,
-    location: state.editprofile.location,
+    u_name: state.editprofile.u_name,
+    u_lastname: state.editprofile.u_lastname,
+    u_email: state.editprofile.u_email,
+    u_phone: state.editprofile.u_phone,
+    u_location: state.editprofile.u_location,
     loading: state.editprofile.loading,
     password: state.editprofile.password,
   };

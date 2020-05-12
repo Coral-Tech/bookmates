@@ -8,6 +8,7 @@ import {
   bookAuthorAdd,
   addBookSubmit,
 } from "../../actions/AddBookActions";
+import { profileFetch } from "../../actions/ProfileActions";
 
 // -------------------------- TO DO  --------------------------
 // * Design
@@ -15,6 +16,10 @@ import {
 // ------------------------------------------------------------
 
 class AddBook extends Component {
+  componentDidMount() {
+    this.props.profileFetch();
+  }
+
   onBookNameChange(text) {
     this.props.bookNameAdd(text);
   }
@@ -24,10 +29,10 @@ class AddBook extends Component {
   }
 
   addBookPress() {
-    const { book_name, author_name } = this.props;
+    const { b_name, b_author, u_details } = this.props;
 
     this.props.addBookSubmit(
-      { book_name, author_name },
+      { b_name, b_author, u_details },
       this.props.navigation.navigate
     );
   }
@@ -40,7 +45,7 @@ class AddBook extends Component {
             label="Book Name"
             placeholder="Nineteen Eighty-Four"
             onChangeText={this.onBookNameChange.bind(this)}
-            value={this.props.book_name}
+            value={this.props.b_name}
           />
         </CardSection>
 
@@ -49,7 +54,7 @@ class AddBook extends Component {
             label="Author"
             placeholder="George Orwell"
             onChangeText={this.onAuthorNameChange.bind(this)}
-            value={this.props.author_name}
+            value={this.props.b_author}
           />
         </CardSection>
 
@@ -68,11 +73,17 @@ class AddBook extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    book_name: state.addbook.book_name,
-    author_name: state.addbook.author_name,
+    b_name: state.addbook.b_name,
+    b_author: state.addbook.b_author,
+    u_details: state.profile.u_details,
   };
 };
 
-const mapDispatchToProps = { bookNameAdd, bookAuthorAdd, addBookSubmit };
+const mapDispatchToProps = {
+  bookNameAdd,
+  bookAuthorAdd,
+  addBookSubmit,
+  profileFetch,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddBook);

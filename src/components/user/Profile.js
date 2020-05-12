@@ -30,15 +30,21 @@ class Profile extends Component {
       return <Spinner />;
     }
 
-    if (this.props.user_data) {
-      const { name, lastname, phone, email, location } = this.props.user_data;
+    if (this.props.u_details) {
+      const {
+        u_name,
+        u_lastname,
+        u_phone,
+        u_email,
+        u_location,
+      } = this.props.u_details;
       return (
         <View>
-          <Text>Name: {name || []}</Text>
-          <Text>Last Name: {lastname || []}</Text>
-          <Text>Phone: {phone || []}</Text>
-          <Text>Email: {email || []}</Text>
-          <Text>Location: {location || []}</Text>
+          <Text>Name: {u_name || []}</Text>
+          <Text>Last Name: {u_lastname || []}</Text>
+          <Text>Phone: {u_phone || []}</Text>
+          <Text>Email: {u_email || []}</Text>
+          <Text>Location: {u_location || []}</Text>
         </View>
       );
     }
@@ -58,7 +64,7 @@ class Profile extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    user_data: state.profile.user_data,
+    u_details: state.profile.u_details,
     loading: state.profile.loading,
   };
 };

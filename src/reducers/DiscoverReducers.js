@@ -6,7 +6,7 @@ import {
 } from "../actions/types";
 
 const INITIAL_STATE = {
-  data: null,
+  all_books: null,
   loading: false,
   error: "",
 };
@@ -17,7 +17,7 @@ export default (state = INITIAL_STATE, action) => {
       return { ...state, loading: true, error: "" };
 
     case FETCH_DISCOVER_SUCCESS:
-      return { ...state, loading: false, data: action.payload };
+      return { ...state, loading: false, all_books: action.payload };
 
     case FETCH_DISCOVER_FAILURE:
       return { ...state, loading: false, error: "Error" };

@@ -23,32 +23,56 @@ export const bookAuthorAdd = (text) => {
   };
 };
 
-export const addBookSubmit = ({ book_name, author_name }, navigateTo) => {
+export const addBookSubmit = ({ b_name, b_author, u_details }, navigateTo) => {
   const { currentUser } = Firebase.auth(); //Get the currient user
 
   // User book
-  const book_details = {
-    book_name: book_name.toTitle(),
-    author_name: author_name.toTitle(),
-    cover: "",
-    datetime_added: new Date().toLocaleString(),
-    added_by: currentUser.uid,
+  const b_details = {
+    b_name: b_name.toTitle(),
+    b_author: b_author.toTitle(),
+    b_cover: "",
+    b_added_date: new Date().toLocaleString(),
+    available: true,
   };
-  const status = {
-    borrowed: false,
-    borrowed_by: [],
-    starred_by: [],
-    requested_by: [],
+
+  const b_owner_details = {
+    u_id: currentUser.uid,
+    u_name: u_details.u_name,
+    u_lastname: u_details.u_lastname,
+    u_location: u_details.u_location,
+    u_phone: u_details.u_phone,
+    u_email: u_details.u_email,
+  };
+
+  const b_details_for_usersdb = {
+    b_name: b_name.toTitle(),
+    b_author: b_author.toTitle(),
+    b_cover: "",
+    b_added_date: new Date().toLocaleString(),
   };
 
   return (dispatch) => {
     navigateTo("bookshelfBooks");
 
+    // push book to /books/ db
+    const pushData = Firebase.database()
+      .ref(`/books/`)
+      .push({ b_details, b_owner_details });
+    const b_id = pushData.key;
+
+    // push book to /user/id db
     Firebase.database()
-      .ref(`/users/${currentUser.uid}/books/owned_books`)
-      .push({ book_details: book_details, status: status })
+      .ref(`/users/${currentUser.uid}/lending_books/all_books/${b_id}`)
+      .set(b_details_for_usersdb)
       .then(() => {
-        dispatch({ type: ADD_BOOK_SUBMIT });
+        Firebase.database()
+          .ref(
+            `/users/${currentUser.uid}/lending_books/available_books/${b_id}`
+          )
+          .set(b_details_for_usersdb)
+          .then(() => {
+            dispatch({ type: ADD_BOOK_SUBMIT });
+          });
       });
   };
 };
