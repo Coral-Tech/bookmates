@@ -35,7 +35,7 @@ export const addBookSubmit = ({ b_name, b_author, u_details }, navigateTo) => {
     available: true,
   };
 
-  const b_owner_details = {
+  const b_lender_details = {
     u_id: currentUser.uid,
     u_name: u_details.u_name,
     u_lastname: u_details.u_lastname,
@@ -57,7 +57,7 @@ export const addBookSubmit = ({ b_name, b_author, u_details }, navigateTo) => {
     // push book to /books/ db
     const pushData = Firebase.database()
       .ref(`/books/`)
-      .push({ b_details, b_owner_details });
+      .push({ b_details, b_lender_details });
     const b_id = pushData.key;
 
     // push book to /user/id db

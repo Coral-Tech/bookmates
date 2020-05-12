@@ -17,7 +17,7 @@ export const borrowedRequestsFetch = () => {
     dispatch({ type: FETCH_BORROWED_REQUESTS });
 
     Firebase.database()
-      .ref(`/users/${currentUser.uid}/books/borrowed_request_sent`)
+      .ref(`/users/${currentUser.uid}/borrowing_books/request_to_borrow_books`)
       .on(
         "value",
         (snapshot) => borrowRequestFetchSuccess(dispatch, snapshot),
@@ -38,53 +38,30 @@ const borrowRequestFetchSuccess = (dispatch, snapshot) => {
 
 //  BORROW BOOK
 
-export const borrowRequest = (id, book_item) => {
-  const { currentUser } = Firebase.auth(); //Get the currient user
-
-  const {
-    author_name,
-    book_name,
-    cover,
-    datetime_added,
-    lastname_owner,
-    lastname_user,
-    name_owner,
-    name_user,
-    owner_uid,
-  } = book_item;
-
-  const book_request_sent = {
-    author_name,
-    book_name,
-    cover,
-    datetime_added,
-    name_borrower: name_user,
-    lastname_borrower: lastname_user,
-    borrower_uid: currentUser.uid,
-  };
-
-  const book_request_recieved = {
-    author_name,
-    book_name,
-    cover,
-    datetime_added,
-    name_owner,
-    lastname_owner,
-    owner_uid,
-  };
+export const borrowRequest = (book, b_borrower_details) => {
+  const { currentUser } = Firebase.auth();
+  const { b_id, b_details, b_lender_details } = book;
 
   return (dispatch) => {
     dispatch({ type: BORROW_REQUEST_SUBMIT });
 
     Firebase.database()
       .ref(
-        `/users/${book_item.owner_uid}/books/borrowed_request_recieved/${id}`
+        `/users/${b_lender_details.u_id}/lending_books/borrow_request_recieved/${b_id}`
       )
-      .set(book_request_sent);
+      .set({ b_id, b_details, b_borrower_details });
 
     Firebase.database()
-      .ref(`/users/${currentUser.uid}/books/borrowed_request_sent/${id}`)
-      .set(book_request_recieved)
+      .ref(
+        `/users/${b_lender_details.u_id}/lending_books/available_books/${b_id}`
+      )
+      .remove();
+
+    Firebase.database()
+      .ref(
+        `/users/${currentUser.uid}/borrowing_books/request_to_borrow_books/${b_id}`
+      )
+      .set(book)
       .then(() => borrowRequestSuccess(dispatch));
   };
 };
@@ -97,18 +74,29 @@ const borrowRequestSuccess = (dispatch) => {
 
 // REMOVE BORROW BOOK
 
-export const removeBorrowRequest = (book_id, owner_id) => {
-  const { currentUser } = Firebase.auth(); //Get the currient user
+export const removeBorrowRequest = (book) => {
+  const { currentUser } = Firebase.auth();
+  const { b_id, b_details, b_lender_details } = book;
 
   return (dispatch) => {
     dispatch({ type: REMOVE_BORROW_REQUEST_SUBMIT });
 
     Firebase.database()
-      .ref(`/users/${owner_id}/books/borrowed_request_recieved/${book_id}`)
+      .ref(
+        `/users/${b_lender_details.u_id}/lending_books/borrow_request_recieved/${b_id}`
+      )
       .remove();
 
     Firebase.database()
-      .ref(`/users/${currentUser.uid}/books/borrowed_request_sent/${book_id}`)
+      .ref(
+        `/users/${b_lender_details.u_id}/lending_books/available_books/${b_id}`
+      )
+      .set(b_details);
+
+    Firebase.database()
+      .ref(
+        `/users/${currentUser.uid}/borrowing_books/request_to_borrow_books/${b_id}`
+      )
       .remove()
       .then(() => removeBookSuccess(dispatch));
   };

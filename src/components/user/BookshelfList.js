@@ -57,14 +57,16 @@ class BookshelfList extends Component {
           onPress={() => {
             this.props.navigation.navigate("borrow");
           }}
-          title="Borrowed"
+          title="go to Borrowed"
         />
         <Text>Lent books</Text>
-
+        <Text>----------------------------------------------------------</Text>
+        <Text>Requests recieved</Text>
+        <Text>----------------------------------------------------------</Text>
         <Text>My books</Text>
         {this.renderOwnedBooks()}
+        <Text>----------------------------------------------------------</Text>
         <Button onPress={this.addBookScreen} title="Add Book" />
-        <Text></Text>
       </View>
     );
   }

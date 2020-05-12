@@ -82,8 +82,6 @@ export const phoneChange = (text) => {
 export const editProfileSubmit = (u_details_new, password, navigateTo) => {
   const { currentUser } = Firebase.auth();
 
-  console.log(password);
-
   return (dispatch) => {
     dispatch({ type: EDIT_PROFILE_SUBMIT });
 

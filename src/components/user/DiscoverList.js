@@ -15,7 +15,9 @@ import {
   borrowedRequestsFetch,
   borrowRequest,
   removeBorrowRequest,
-} from "../../actions/BorrowRequestActions";
+} from "../../actions/BorrowActions";
+
+import { profileFetch } from "../../actions/ProfileActions";
 
 import Firebase from "../../Firebase";
 
@@ -26,49 +28,41 @@ import Firebase from "../../Firebase";
 class DiscoverList extends Component {
   componentDidMount() {
     this.props.booksDiscoverFetch();
+    this.props.profileFetch();
   }
 
-  // // RENDER BORROWED BOOKS
+  // RENDER BORROWED BOOKS
 
-  // borrowOption = (item) => {
-  //   const book_details = {
-  //     author_name: item.book.author_name,
-  //     book_name: item.book.book_name,
-  //     cover: item.book.cover,
-  //     datetime_added: item.book.datetime_added,
-  //     owner_uid: item.user.userid,
-  //     name_owner: item.user.name,
-  //     lastname_owner: item.user.lastname,
-  //     name_user: this.props.logged_in_user.name,
-  //     lastname_user: this.props.logged_in_user.lastname,
-  //   };
+  borrowOption = (book) => {
+    this.props.borrowRequest(book, this.props.u_details);
+    this.props.borrowedRequestsFetch();
+  };
 
-  //   this.props.borrowRequest(item.book.book_id, book_details);
-  //   this.props.borrowedRequestsFetch();
-  // };
+  removeBorrowOption = (book) => {
+    this.props.removeBorrowRequest(book);
+    this.props.borrowedRequestsFetch();
+  };
 
-  // removeBorrowOption = (item) => {
-  //   this.props.removeBorrowRequest(item.book.book_id, item.user.userid);
-  //   this.props.borrowedRequestsFetch();
-  // };
+  renderSendBorrowRequestButton(book) {
+    if (this.props.loading_borrowed) {
+      return <Spinner />;
+    }
 
-  // renderBorrowButton(item) {
-  //   if (this.props.loading_borrowed) {
-  //     return <Spinner />;
-  //   }
-
-  //   if (this.props.borrow_request.includes(item.book.book_id)) {
-  //     return (
-  //       <Button
-  //         onPress={() => this.removeBorrowOption(item)}
-  //         title="Remove Borrow Request"
-  //       />
-  //     );
-  //   }
-  //   return (
-  //     <Button onPress={() => this.borrowOption(item)} title="Borrow Request" />
-  //   );
-  // }
+    if (this.props.borrow_books.includes(book.b_id)) {
+      return (
+        <Button
+          onPress={() => this.removeBorrowOption(book)}
+          title="Remove Borrow Request"
+        />
+      );
+    }
+    return (
+      <Button
+        onPress={() => this.borrowOption(book)}
+        title="Send borrow request"
+      />
+    );
+  }
 
   // // RENDER STARRED BOOKS
 
@@ -98,7 +92,7 @@ class DiscoverList extends Component {
 
   renderRow(book) {
     const { b_name, b_author, b_cover, b_added_date } = book.item.b_details;
-    const { u_name, u_lastname, u_location } = book.item.b_owner_details;
+    const { u_name, u_lastname, u_location } = book.item.b_lender_details;
 
     return (
       <View>
@@ -109,9 +103,8 @@ class DiscoverList extends Component {
         </Text>
         <Text>Location: {u_location}</Text>
         {this.renderStarButton(book.item)}
-        {/* {this.renderBorrowButton(item.item)} */}
-        <Text></Text>
-        <Text></Text>
+        {this.renderSendBorrowRequestButton(book.item)}
+        <Text>----------------------------------------------------------</Text>
       </View>
     );
   }
@@ -125,7 +118,7 @@ class DiscoverList extends Component {
       <FlatList
         data={this.props.all_books || []}
         renderItem={(book) => this.renderRow(book)}
-        keyExtractor={(book) => book.b_uid}
+        keyExtractor={(book) => book.b_id}
       />
     );
   }
@@ -149,8 +142,8 @@ const mapStateToProps = (state) => {
     (book) => {
       let result = {};
       if (typeof book !== "undefined") {
-        if (book.b_owner_details.u_id !== Firebase.auth().currentUser.uid) {
-          result[book.b_owner_details.u_id] = book;
+        if (book.b_lender_details.u_id !== Firebase.auth().currentUser.uid) {
+          result[book.b_lender_details.u_id] = book;
         }
       }
 
@@ -167,55 +160,23 @@ const mapStateToProps = (state) => {
     }
   );
 
-  //   const books_mapped = _.flatMap(owned_books || [], (book, id) => {
-  //     const {
-  //       added_by,
-  //       book_name,
-  //       author_name,
-  //       datetime_added,
-  //       cover,
-  //     } = book.book_details;
+  // BORROW BOOKS
 
-  //     const book_id = id;
-
-  //     return {
-  //       user: { name, lastname, location, userid },
-  //       book: {
-  //         added_by,
-  //         book_id,
-  //         book_name,
-  //         author_name,
-  //         datetime_added,
-  //         cover,
-  //         status: book.status,
-  //       },
-  //     };
-  //   });
-
-  //   return books_mapped;
-  // });
-
-  // const data_filtred_map_notBorrowed = data_filtred_map.filter((item) => {
-  //   return (
-  //     item.book.status === undefined || item.book.status.borrowed === false
-  //   );
-  // });
-
-  // const borrowed_request_id = _.flatMap(
-  //   state.borrow_request.borrowed_books_request || [],
-  //   (book, id) => {
-  //     return id;
-  //   }
-  // );
+  const borrow_b_id = _.flatMap(
+    state.borrow.borrowed_books_request || [],
+    (b_details, b_id) => {
+      return b_id;
+    }
+  );
 
   return {
     all_books: all_books_filtered,
     loading: state.discover.loading,
     starred_books: starred_b_id,
     loading_star: state.star.loading,
-    // borrow_request: borrowed_request_id,
-    // loading_borrowed: state.borrow_request.loading,
-    // logged_in_user: state.profile.user_data,
+    borrow_books: borrow_b_id,
+    loading_borrowed: state.borrow.loading,
+    u_details: state.profile.u_details,
   };
 };
 
@@ -228,4 +189,6 @@ export default connect(mapStateToProps, {
   borrowedRequestsFetch,
   borrowRequest,
   removeBorrowRequest,
+
+  profileFetch,
 })(DiscoverList);

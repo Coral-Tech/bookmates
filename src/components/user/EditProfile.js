@@ -59,8 +59,6 @@ class EditProfile extends Component {
     } = this.props;
     const u_details_new = { u_email, u_lastname, u_location, u_name, u_phone };
 
-    console.log(password);
-
     this.props.editProfileSubmit(
       u_details_new,
       password,

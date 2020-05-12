@@ -1,0 +1,73 @@
+// User presses borrow button
+// Borrow sent from User1 is sent and User2 recieves it in borrow recieved
+// User 2 accepts borrow request and book is added to borrowed books or deletes
+// borrowed request sent disappear
+
+{
+  "users": {
+    "usedIdFromFirebase": {
+      "user_data": {
+        "name": "text",
+        "lastname": "text",
+        "uid": "text",
+        "user_created": "text",
+        "location": {
+          "country": "text",
+          "region": "text",
+          "city": "text"
+        }
+      },
+      "books": {
+        "owned_books": {
+          "book1IdFromFirebase": {
+            "book_details": {
+              "book_name": "book_name",
+              "author_name": "author_name",
+              "cover": "",
+              "datetime_added": "new Date().toLocaleString()"
+            },
+            "book_status": {
+              "borrowed": false
+            }
+          }
+        },
+        "starred_books": {
+          "book2IdFromFirebase": {
+            "book_name": "book_name",
+            "author_name": "author_name",
+            "cover": "",
+            "datetime_starred": "new Date().toLocaleString()",
+            "owner_uid": "uid"
+          }
+        },
+        "borrowed_books": {
+          "book3IdFromFirebase": {
+            "book_name": "book_name",
+            "author_name": "author_name",
+            "cover": "",
+            "datetime_borrowed": "new Date().toLocaleString()",
+            "owner_uid": "uid"
+          }
+        },
+        "borrowed_request_sent": {
+          "book4IdFromFirebase": {
+            "book_name": "book_name",
+            "author_name": "author_name",
+            "cover": "",
+            "datetime_borrowed": "new Date().toLocaleString()",
+            "owner_uid": "uid"
+          }
+        },
+        "borrowed_request_recieved": {
+          "book5IdFromFirebase": {
+            "book_name": "book_name",
+            "author_name": "author_name",
+            "cover": "",
+            "datetime_borrowed": "new Date().toLocaleString()",
+            "borrower_id": "uid"
+          }
+        }
+      }
+    }
+  }
+}
