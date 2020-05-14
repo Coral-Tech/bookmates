@@ -9,15 +9,15 @@
         "u_location": "u_location"
       },
       "lending_books": {
-        "all_books": ["b_id"],
-        "available_books": [],
-        "borrow_request_recieved": [],
+        "all_books": ["b_id"], //done
+        "available_books": [], //done
+        "borrow_request_recieved": [], //done
         "borrow_request_accepted": [], // not picked up
         "lent_books": [] // picked up
       },
       "borrowing_books": {
-        "starred_books": [],
-        "request_to_borrow_books": [],
+        "starred_books": [], //done
+        "request_to_borrow_books": [], //done
         "pickup_books": [],
         "borrowed_books": []
       }
@@ -46,12 +46,14 @@
 // User2 removes star  and the book is removed from /users/U2/borrowing_books/starred_books
 
 // BORROW PROCESS
-// User2 requests to borrow book. Book is added in /users/U2/borrowing_books/request_to_borrow_books and in /users/U1/lending_books/borrow_request_recieved
+//  User2 requests to borrow book. Book is added in /users/U2/borrowing_books/request_to_borrow_books and in /users/U1/lending_books/borrow_request_recieved
 //      Lender options (User1) - accept request, reject request
 //      Borrower options (User2) - cancel request
+
 // User1 accepts borrow request. Books is added in /users/U1/lending_books/borrow_request_accepted and /users/U2/borrowing_books/pickup_books and available:false and notification is sent with lender_id
 //      Lender options (User1) - cancel pickup
 //      Borrower options (User2) - cancel pickup, mark picked up
+
 // User2 picks up the book and book is changed to /users/U1/lending_books/lent_books and /users/U2/borrowing_books/borrowed_books
 //      Lender options (User1) - mark returned
 //      Borrower options (User2) - mark returned

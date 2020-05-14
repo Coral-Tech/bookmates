@@ -13,6 +13,7 @@
     "@react-navigation/bottom-tabs": "^5.2.8",
     "@react-navigation/native": "^5.2.3",
     "expo": "~37.0.3",
+    "expo-image-picker": "^8.1.0",
     "firebase": "7.9.0",
     "lodash": "^4.17.15",
     "react": "~16.9.0",

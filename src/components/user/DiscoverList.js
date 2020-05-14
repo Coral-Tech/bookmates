@@ -1,6 +1,6 @@
 import _ from "lodash";
 import React, { Component } from "react";
-import { View, Text, Button, FlatList } from "react-native";
+import { View, Text, Button, FlatList, Image } from "react-native";
 import { connect } from "react-redux";
 
 import { Spinner } from "../common";
@@ -104,6 +104,7 @@ class DiscoverList extends Component {
         <Text>Location: {u_location}</Text>
         {this.renderStarButton(book.item)}
         {this.renderSendBorrowRequestButton(book.item)}
+        <Image source={{ uri: b_cover }} style={{ height: 100, width: 75 }} />
         <Text>----------------------------------------------------------</Text>
       </View>
     );

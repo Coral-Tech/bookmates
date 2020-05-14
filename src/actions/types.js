@@ -40,10 +40,14 @@ export const FETCH_LENT_BOOKS = "fetch_lent_books_submit"; // Done
 export const FETCH_LENT_BOOKS_SUCCESS = "fetch_lent_books_submit_sucess";
 
 // Add Book
+export const ADD_BOOK_ID = "add_book_id"; // Done
 export const ADD_BOOK_NAME = "add_book_name"; // Done
 export const ADD_BOOK_AUTHOR = "add_book_author"; // Done
-export const ADD_BOOK_COVER = "add_book_cover";
 export const ADD_BOOK_SUBMIT = "add_book_submit"; // Done
+
+export const ADD_BOOK_COVER_SUBMIT = "add_book_cove_submit";
+
+export const ADD_BOOK_COVER_SUCCESS = "add_book_cover_success";
 
 export const EDIT_BOOK_NAME = "edit_book_name";
 export const EDIT_BOOK_AUTHOR = "edit_book_author";
