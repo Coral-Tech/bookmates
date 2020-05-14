@@ -15,11 +15,31 @@ export const SIGN_UP_FAIL = "sign_up_fail"; // Done
 //  Bookshelf
 
 export const FETCH_PERSONAL_BOOKS = "fetch_personal_books"; // Done
-export const FETCH_PERSONAL_BOOKS_INDIVIDUAL =
-  "fetch_personal_books_individual"; // Done
 export const FETCH_PERSONAL_SUCCESS = "fetch_personal_success"; // Done
 export const FETCH_PERSONAL_FAILURE = "fetch_personal_failure"; // Done
 
+export const FETCH_REQUESTS_RECIEVED = "fetch_requests_recieved"; // Done
+export const FETCH_REQUESTS_RECIEVED_SUCCESS =
+  "fetch_requests_recieved_success";
+export const REMOVE_REQUESTS_RECIEVED = "remove_requests_recieved"; // Done
+export const REMOVE_REQUESTS_RECIEVED_SUCCESS =
+  "remove_requests_recieved_success";
+export const ACCEPT_REQUESTS_RECIEVED = "accept_requests_recieved"; // Done
+export const ACCEPT_REQUESTS_RECIEVED_SUCCESS =
+  "accept_requests_recieved_success";
+
+export const FETCH_REQUESTS_ACCEPTED = "fetch_requests_accepted"; // Done
+export const FETCH_REQUESTS_ACCEPTED_SUCCESS =
+  "fetch_requests_accepted_success";
+export const CANCEL_PICK_UP = "cancel_pickup"; // Done
+export const CANCEL_PICK_UP_SUCCESS = "rcancel_pickup_success";
+export const PICK_UP_SUMBIT = "pickup_submit"; // Done
+export const PICK_UP_SUBMIT_SUCCESS = "pickup_submit_sucess";
+
+export const FETCH_LENT_BOOKS = "fetch_lent_books_submit"; // Done
+export const FETCH_LENT_BOOKS_SUCCESS = "fetch_lent_books_submit_sucess";
+
+// Add Book
 export const ADD_BOOK_NAME = "add_book_name"; // Done
 export const ADD_BOOK_AUTHOR = "add_book_author"; // Done
 export const ADD_BOOK_COVER = "add_book_cover";
@@ -46,28 +66,22 @@ export const REMOVE_STAR_BOOK_SUCCESS = "remove_star_book_success"; // Done
 
 // SENT BORROW REQUESTS
 
-export const FETCH_BORROWED_REQUESTS = "fetch_borrowed_book";
-export const FETCH_BORROWED_REQUESTS_SUCCESS = "fetch_borrowed_books_success";
+export const FETCH_BORROWED_REQUESTS = "fetch_borrowed_request";
+export const FETCH_BORROWED_REQUESTS_SUCCESS = "fetch_borrowed_request_success";
 
 export const BORROW_REQUEST_SUBMIT = "borrow_request_submit";
 export const BORROW_REQUEST_SUCCESS = "borrow_request_success";
 export const REMOVE_BORROW_REQUEST_SUBMIT = "remove_borrow_request_submit";
 export const REMOVE_BORROW_REQUEST_SUCCESS = "remove_borrow_request_success";
 
-export const FETCH_BORROWED_RECIEVED_REQUESTS = "fetch_borrowed_recieved_book";
-export const FETCH_BORROWED_RECIEVED_REQUESTS_SUCCESS =
-  "fetch_borrowed_recieved_books_success";
+export const FETCH_PICKUP_BOOKS = "fetch_pick_up_books"; // Done
+export const FETCH_PICKUP_BOOKS_SUCCESS = "fetch_pick_up_books_success";
 
-export const ACCEPT_BORROW_REQUEST_RECIEVED_SUBMIT =
-  "borrow_request_recieved_submit";
-export const ACCEPT_BORROW_REQUEST_RECIEVED_SUCCESS =
-  "borrow_request_recieved_success";
-export const REMOVE_BORROW_REQUEST_RECIEVED_SUBMIT =
-  "remove_borrow_request_recieved_submit";
-export const REMOVE_BORROW_REQUEST_RECIEVED_SUCCESS =
-  "remove_borrow_request_recieved_success";
+export const FETCH_BORROWED_BOOKS = "fetch_borrowed_books"; // Done
+export const FETCH_BORROWED_BOOKS_SUCCESS = "fetch_borrowed_books_success";
 
 //  Profile
+
 export const ADD_PROFILE_NAME = "add_profile_name"; // Done
 export const ADD_PROFILE_LASTNAME = "add_profile_last"; // Done
 export const ADD_PROFILE_PHONE = "add_profile_phone"; // Done

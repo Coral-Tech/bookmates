@@ -138,15 +138,17 @@ const mapStateToProps = (state) => {
     }
   );
 
+  // Filtering for books not from lender and available:true
   const all_books_filtered = Object.values(all_books_mapped || []).filter(
     (book) => {
       let result = {};
       if (typeof book !== "undefined") {
         if (book.b_lender_details.u_id !== Firebase.auth().currentUser.uid) {
-          result[book.b_lender_details.u_id] = book;
+          if (book.b_details.available === true) {
+            result[book.b_lender_details.u_id] = book;
+          }
         }
       }
-
       return Object.keys(result).length ? result : false;
     }
   );
