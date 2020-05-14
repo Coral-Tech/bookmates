@@ -14,7 +14,7 @@ const INITIAL_STATE = {
   b_author: "",
   b_cover: "",
   b_cover_loading: false,
-  tmp: "",
+  local_image: "",
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -31,7 +31,7 @@ export default (state = INITIAL_STATE, action) => {
       return {
         ...state,
         b_cover: action.payload.url,
-        tmp: action.payload.tmp,
+        local_image: action.payload.local_image,
         b_cover_loading: false,
       };
 

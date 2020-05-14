@@ -64,11 +64,11 @@ class AddBook extends Component {
       );
     }
 
-    if (this.props.tmp) {
+    if (this.props.local_image) {
       return (
         <View>
           <Image
-            source={{ uri: this.props.tmp }}
+            source={{ uri: this.props.local_image }}
             style={{ height: 100, width: 75 }}
           />
           <Button onPress={this.onChooseImagePress} title="Add cover" />
@@ -79,7 +79,7 @@ class AddBook extends Component {
       return (
         <View>
           <Button onPress={this.onChooseImagePress} title="Add cover" />
-          <Button onPress={this.addBookPress.bind(this)} title="Add book" />
+          <Button onPress={() => {}} title="Add book" />
         </View>
       );
     }
@@ -119,7 +119,7 @@ const mapStateToProps = (state) => {
     u_details: state.profile.u_details,
     b_cover: state.addbook.b_cover,
     b_cover_loading: state.addbook.b_cover_loading,
-    tmp: state.addbook.tmp,
+    local_image: state.addbook.local_image,
   };
 };
 

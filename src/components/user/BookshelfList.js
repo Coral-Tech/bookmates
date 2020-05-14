@@ -4,7 +4,7 @@ import { View, Text, Button, FlatList, Image } from "react-native";
 import { connect } from "react-redux";
 
 import { Spinner } from "../common";
-import Firebase from "../../Firebase";
+
 import {
   booksBookshelfFetch,
   requestsRecievedFetch,
@@ -284,10 +284,7 @@ const mapStateToProps = (state) => {
     requests_accepted: requests_accepted_mapped,
     requests_accepted_loading: state.bookshelf.requests_recieved_loading,
 
-    u_details: {
-      ...state.profile.u_details,
-      u_id: Firebase.auth().currentUser.uid,
-    },
+    u_details: state.profile.u_details,
 
     lent_books: lent_books_mapped,
     lent_books_loading: state.bookshelf.lent_books_loading,

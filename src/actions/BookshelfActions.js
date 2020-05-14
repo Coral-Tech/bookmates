@@ -47,7 +47,6 @@ const booksBookshelfFetchSuccess = (dispatch, snapshot) => {
 // LENT ACTIONS
 
 export const markReturned = (book) => {
-  console.log("log");
   const { currentUser } = Firebase.auth();
   const { b_id, b_details, b_borrower_details } = book;
 

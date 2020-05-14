@@ -9,6 +9,7 @@ import {
   EDIT_PROFILE_SUBMIT,
   EDIT_PROFILE_SUBMIT_SUCCESS,
   EDIT_PROFILE_PASSWORD,
+  PROFILE_SIGN_OUT,
 } from "../actions/types";
 
 const INITIAL_STATE = {
@@ -61,7 +62,8 @@ export default (state = INITIAL_STATE, action) => {
         u_phone: action.payload.u_phone,
         u_location: action.payload.u_location,
       };
-
+    case PROFILE_SIGN_OUT:
+      return { INITIAL_STATE };
     default:
       return state;
   }

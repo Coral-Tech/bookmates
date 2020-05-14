@@ -46,6 +46,7 @@ export const profileAddSubmit = (
 
   // User book
   const u_details = {
+    u_id: currentUser.uid,
     u_name: u_name.toTitle(),
     u_lastname: u_lastname.toTitle(),
     u_phone: u_phone,

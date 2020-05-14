@@ -55,7 +55,7 @@ export const coverAdd = (blob, temp_image, b_id) => {
           type: ADD_BOOK_COVER_SUCCESS,
           payload: {
             url: `/books/${currentUser.uid}/${b_id}`,
-            tmp: temp_image,
+            local_image: temp_image,
           },
         });
       });
