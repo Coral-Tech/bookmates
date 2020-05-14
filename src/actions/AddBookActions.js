@@ -41,7 +41,7 @@ export const bookAuthorAdd = (text) => {
   };
 };
 
-export const coverAdd = (blob, b_id) => {
+export const coverAdd = (blob, temp_image, b_id) => {
   const { currentUser } = Firebase.auth(); //Get the currient user
 
   return (dispatch) => {
@@ -53,7 +53,10 @@ export const coverAdd = (blob, b_id) => {
       .then(() => {
         dispatch({
           type: ADD_BOOK_COVER_SUCCESS,
-          payload: `/books/${currentUser.uid}/${b_id}`,
+          payload: {
+            url: `/books/${currentUser.uid}/${b_id}`,
+            tmp: temp_image,
+          },
         });
       });
   };

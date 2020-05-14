@@ -14,6 +14,7 @@ const INITIAL_STATE = {
   b_author: "",
   b_cover: "",
   b_cover_loading: false,
+  tmp: "",
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -27,7 +28,12 @@ export default (state = INITIAL_STATE, action) => {
     case ADD_BOOK_COVER_SUBMIT:
       return { ...state, b_cover_loading: true };
     case ADD_BOOK_COVER_SUCCESS:
-      return { ...state, b_cover: action.payload, b_cover_loading: false };
+      return {
+        ...state,
+        b_cover: action.payload.url,
+        tmp: action.payload.tmp,
+        b_cover_loading: false,
+      };
 
     case ADD_BOOK_SUBMIT:
       return { INITIAL_STATE };

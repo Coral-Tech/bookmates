@@ -12,6 +12,7 @@ import {
   PICK_UP_SUMBIT,
   FETCH_LENT_BOOKS,
   FETCH_LENT_BOOKS_SUCCESS,
+  MARK_RETURNED_BOOK,
 } from "./types";
 
 import Firebase from "../Firebase";
@@ -44,6 +45,32 @@ const booksBookshelfFetchSuccess = (dispatch, snapshot) => {
 };
 
 // LENT ACTIONS
+
+export const markReturned = (book) => {
+  console.log("log");
+  const { currentUser } = Firebase.auth();
+  const { b_id, b_details, b_borrower_details } = book;
+
+  return (dispatch) => {
+    dispatch({ type: MARK_RETURNED_BOOK });
+
+    Firebase.database()
+      .ref(`/users/${currentUser.uid}/lending_books/lent_books/${b_id}`)
+      .remove();
+
+    Firebase.database()
+      .ref(`/users/${currentUser.uid}/lending_books/available_books/${b_id}`)
+      .set(b_details);
+
+    Firebase.database()
+      .ref(
+        `/users/${b_borrower_details.u_id}/borrowing_books/borrowed_books/${b_id}`
+      )
+      .remove();
+
+    Firebase.database().ref(`/books/${b_id}/b_details/available`).set(true);
+  };
+};
 
 export const lentBooksFetch = () => {
   const { currentUser } = Firebase.auth();

@@ -39,6 +39,8 @@ export const PICK_UP_SUBMIT_SUCCESS = "pickup_submit_sucess";
 export const FETCH_LENT_BOOKS = "fetch_lent_books_submit"; // Done
 export const FETCH_LENT_BOOKS_SUCCESS = "fetch_lent_books_submit_sucess";
 
+export const MARK_RETURNED_BOOK = "mark_returned_book";
+
 // Add Book
 export const ADD_BOOK_ID = "add_book_id"; // Done
 export const ADD_BOOK_NAME = "add_book_name"; // Done

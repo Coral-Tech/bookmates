@@ -1,6 +1,6 @@
 import _ from "lodash";
 import React, { Component } from "react";
-import { View, Text, Button, FlatList } from "react-native";
+import { View, Text, Button, FlatList, Image } from "react-native";
 import { connect } from "react-redux";
 
 import { Spinner } from "../common";
@@ -14,6 +14,7 @@ import {
   cancelPickUp,
   markPickedUp,
   lentBooksFetch,
+  markReturned,
 } from "../../actions/BookshelfActions";
 
 import { profileFetch } from "../../actions/ProfileActions";
@@ -39,6 +40,10 @@ class BookshelfList extends Component {
 
   // RENDER LENT BOOKS
 
+  markReturnedOption(book) {
+    this.props.markReturned(book);
+  }
+
   renderLentBooksRow(book) {
     if (book) {
       const { b_name, b_author, b_cover, b_added_date } = book.item.b_details;
@@ -51,6 +56,11 @@ class BookshelfList extends Component {
             Request from: {u_name} {u_lastname}
           </Text>
           <Text>Contact: {u_phone}</Text>
+          <Image source={{ uri: b_cover }} style={{ height: 100, width: 75 }} />
+          <Button
+            onPress={() => this.markReturnedOption(book.item)}
+            title="Mark returned"
+          />
           <Text></Text>
         </View>
       );
@@ -95,6 +105,7 @@ class BookshelfList extends Component {
             Request from: {u_name} {u_lastname}
           </Text>
           <Text>Contact: {u_phone}</Text>
+          <Image source={{ uri: b_cover }} style={{ height: 100, width: 75 }} />
           <Button
             onPress={() => this.acceptPickUpRecieved(book.item)}
             title="Picked up"
@@ -146,6 +157,7 @@ class BookshelfList extends Component {
           <Text>
             Request from: {u_name} {u_lastname}
           </Text>
+          <Image source={{ uri: b_cover }} style={{ height: 100, width: 75 }} />
           <Button
             onPress={() => this.acceptRequestRecieved(book.item)}
             title="Accept"
@@ -184,6 +196,7 @@ class BookshelfList extends Component {
           <Text>{b_name}</Text>
           <Text>{b_author}</Text>
           <Text>Added: {b_added_date}</Text>
+          <Image source={{ uri: b_cover }} style={{ height: 100, width: 75 }} />
           <Text></Text>
         </View>
       );
@@ -291,4 +304,5 @@ export default connect(mapStateToProps, {
   cancelPickUp,
   markPickedUp,
   lentBooksFetch,
+  markReturned,
 })(BookshelfList);

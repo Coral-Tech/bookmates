@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, Text, Button, Alert } from "react-native";
+import { View, Text, Button, Alert, Image } from "react-native";
 import { Input, CardSection, Spinner } from "../common";
 import { connect } from "react-redux";
 
@@ -11,7 +11,7 @@ import {
   addBookSubmit,
 } from "../../actions/AddBookActions";
 import { profileFetch } from "../../actions/ProfileActions";
-
+import Firebase from "../../Firebase";
 import * as ImagePicker from "expo-image-picker";
 
 // -------------------------- TO DO  --------------------------
@@ -41,7 +41,7 @@ class AddBook extends Component {
     if (!result.cancelled) {
       const response = await fetch(result.uri);
       const blob = await response.blob();
-      this.props.coverAdd(blob, this.props.b_id);
+      this.props.coverAdd(blob, result.uri, this.props.b_id);
     }
   };
 
@@ -63,12 +63,26 @@ class AddBook extends Component {
         </View>
       );
     }
-    return (
-      <View>
-        <Button onPress={this.onChooseImagePress} title="Add cover" />
-        <Button onPress={this.addBookPress.bind(this)} title="Add book" />
-      </View>
-    );
+
+    if (this.props.tmp) {
+      return (
+        <View>
+          <Image
+            source={{ uri: this.props.tmp }}
+            style={{ height: 100, width: 75 }}
+          />
+          <Button onPress={this.onChooseImagePress} title="Add cover" />
+          <Button onPress={this.addBookPress.bind(this)} title="Add book" />
+        </View>
+      );
+    } else {
+      return (
+        <View>
+          <Button onPress={this.onChooseImagePress} title="Add cover" />
+          <Button onPress={this.addBookPress.bind(this)} title="Add book" />
+        </View>
+      );
+    }
   }
 
   render() {
@@ -105,6 +119,7 @@ const mapStateToProps = (state) => {
     u_details: state.profile.u_details,
     b_cover: state.addbook.b_cover,
     b_cover_loading: state.addbook.b_cover_loading,
+    tmp: state.addbook.tmp,
   };
 };
 

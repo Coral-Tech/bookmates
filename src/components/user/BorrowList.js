@@ -1,6 +1,6 @@
 import _ from "lodash";
 import React, { Component } from "react";
-import { View, Text, Button, FlatList } from "react-native";
+import { View, Text, Button, FlatList, Image } from "react-native";
 import { connect } from "react-redux";
 import { Spinner } from "../common";
 
@@ -39,6 +39,7 @@ class BorrowList extends Component {
             Lender: {u_name} {u_lastname}
           </Text>
           <Text>Contact: {u_phone}</Text>
+          <Image source={{ uri: b_cover }} style={{ height: 100, width: 75 }} />
         </View>
       );
     }
@@ -78,6 +79,8 @@ class BorrowList extends Component {
             Lender: {u_name} {u_lastname}
           </Text>
           <Text>Contact: {u_phone}</Text>
+          <Image source={{ uri: b_cover }} style={{ height: 100, width: 75 }} />
+
           <Button
             onPress={() => this.removePickUpOption(book.item)}
             title="Cancel PickUp"
@@ -120,6 +123,7 @@ class BorrowList extends Component {
           <Text>
             Lender: {u_name} {u_lastname}
           </Text>
+          <Image source={{ uri: b_cover }} style={{ height: 100, width: 75 }} />
           <Button
             onPress={() => this.removeBorrowOption(book.item)}
             title="Remove Borrow Request"

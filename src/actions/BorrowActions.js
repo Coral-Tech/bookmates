@@ -7,6 +7,7 @@ import {
   FETCH_PICKUP_BOOKS_SUCCESS,
   FETCH_BORROWED_BOOKS,
   FETCH_BORROWED_BOOKS_SUCCESS,
+  MARK_RETURNED_BOOK,
 } from "./types";
 
 import Firebase from "../Firebase";
@@ -47,8 +48,6 @@ export const removePickUp = (book) => {
 
   return (dispatch) => {
     dispatch({ type: REMOVE_BORROW_REQUEST_SUBMIT });
-
-    console.log(book);
 
     Firebase.database()
       .ref(`/users/${currentUser.uid}/borrowing_books/pickup_books/${b_id}`)
