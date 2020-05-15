@@ -114,6 +114,7 @@ const rootNavigation = createStackNavigator({
     navigationOptions: {
       gestureEnabled: false,
       headerVisible: false,
+      headerShown: false,
     },
   },
   user: {
