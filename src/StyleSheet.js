@@ -121,6 +121,41 @@ export const Styles = {
     },
   },
 
+  bookshelfBorrowScreen: {
+    boundingBox: {
+      flex: 1,
+    },
+    navigatorButtonBox: {
+      flexDirection: "row",
+      justifyContent: "space-around",
+      height: "5%",
+    },
+
+    otherStyleBox: {
+      backgroundColor: "white",
+      width: "50%",
+      alignItems: "center",
+      borderColor: "#CCCCCC",
+      borderWidth: 1,
+      justifyContent: "center",
+    },
+    selectionStyleBox: {
+      backgroundColor: "#9BFFF9",
+      width: "50%",
+      justifyContent: "center",
+      alignItems: "center",
+      borderColor: "#CCCCCC",
+      borderWidth: 1,
+    },
+    otherTextStyle: {
+      color: "#7E7E7E",
+      fontWeight: "600",
+    },
+    selectionTextStyle: {
+      fontWeight: "600",
+    },
+  },
+
   // Bookshelf
   bookshelfScreen: {
     boundingBox: {
@@ -153,7 +188,6 @@ export const Styles = {
       // alignItems: "center",
       justifyContent: "center",
     },
-
     textBox: {
       height: "70%",
     },
@@ -166,6 +200,7 @@ export const Styles = {
     },
     lenderDataDetailBox: {
       flexDirection: "row",
+      paddingRight: "10%",
     },
     iconStyle: {
       height: "100%",
@@ -208,7 +243,90 @@ export const Styles = {
   addBookScreen: {},
 
   // Borrowed book
-  borrowedBookScreen: {},
+  borrowedBookScreen: {
+    titleStyle: {
+      fontSize: 15,
+      fontWeight: "bold",
+      paddingLeft: "6%",
+    },
+    addBookContainer: {
+      alignItems: "center",
+      justifyContent: "center",
+      height: 400,
+    },
+    addBookStyle: {
+      fontSize: 15,
+      alignItems: "center",
+    },
+    bookBox: {
+      flex: 1,
+      flexDirection: "row",
+      height: 200,
+    },
+    imageBox: {
+      width: "35%",
+      justifyContent: "center",
+    },
+    colorCodeStyle: {
+      borderWidth: 1,
+      height: 150,
+      width: 5,
+    },
+    imageStyle: {
+      height: 150,
+      resizeMode: "contain",
+    },
+    detailBox: {
+      width: "65%",
+      padding: "5%",
+    },
+    textBox: {
+      height: "70%",
+    },
+    bookTitleStyle: {
+      fontSize: 20,
+      fontWeight: "bold",
+    },
+    bookAuthorStyle: {
+      fontSize: 17,
+    },
+    lenderDataDetailBox: {
+      flexDirection: "row",
+      paddingRight: "10%",
+    },
+    iconStyle: {
+      height: "100%",
+      width: "10%",
+      resizeMode: "contain",
+    },
+    lenderDataStyle: {
+      fontSize: 15,
+      color: "#6a6a6a",
+    },
+    buttonBox: {
+      height: "60%",
+      justifyContent: "space-around",
+    },
+    touchableOpacityBox: {
+      alignItems: "center",
+    },
+    acceptStyle: {
+      fontSize: 15,
+      color: "#407EF4",
+      fontWeight: "bold",
+    },
+
+    actionStyle: {
+      fontSize: 15,
+      color: "#407EF4",
+      fontWeight: "500",
+    },
+    removeStyle: {
+      fontSize: 15,
+      color: "#F57575",
+      fontWeight: "bold",
+    },
+  },
 };
 
 //   borderWidth: 2,

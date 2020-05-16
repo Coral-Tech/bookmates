@@ -11,7 +11,6 @@ import {
   ScrollView,
 } from "react-native";
 import { connect } from "react-redux";
-
 import { Spinner } from "../common";
 import { Styles } from "../../StyleSheet";
 
@@ -31,12 +30,9 @@ import { profileFetch } from "../../actions/ProfileActions";
 
 import { YellowBox } from "react-native";
 
-YellowBox.ignoreWarnings([
-  "VirtualizedLists should never be nested", // TODO: Remove when fixed
-]);
+YellowBox.ignoreWarnings(["VirtualizedLists should never be nested"]);
 
 // -------------------------- TO DO  --------------------------
-// * Design
 // ------------------------------------------------------------
 
 class BookshelfList extends Component {
@@ -103,7 +99,7 @@ class BookshelfList extends Component {
                     source={require("../../img/discover_screen/owner_icon.png")}
                   />
                   <Text style={lenderDataStyle}>
-                    {u_name} {u_lastname}
+                    {u_name} {u_lastname} borrwed this book
                   </Text>
                 </View>
 
@@ -213,7 +209,7 @@ class BookshelfList extends Component {
                     source={require("../../img/discover_screen/owner_icon.png")}
                   />
                   <Text style={lenderDataStyle}>
-                    {u_name} {u_lastname}
+                    {u_name} {u_lastname} will contact you to pick up this book
                   </Text>
                 </View>
 
@@ -329,7 +325,7 @@ class BookshelfList extends Component {
                     source={require("../../img/discover_screen/owner_icon.png")}
                   />
                   <Text style={lenderDataStyle}>
-                    From {u_name} {u_lastname}
+                    {u_name} {u_lastname} wants to read this book
                   </Text>
                 </View>
 
@@ -460,17 +456,36 @@ class BookshelfList extends Component {
   // RENDER
 
   render() {
-    const { boundingBox, titleStyle } = Styles.bookshelfScreen;
+    const {
+      boundingBox,
+      navigatorButtonBox,
+      buttonBox,
+      otherStyleBox,
+      selectionStyleBox,
+      otherTextStyle,
+      selectionTextStyle,
+    } = Styles.bookshelfBorrowScreen;
 
     return (
-      <View>
-        <Button
-          onPress={() => {
-            this.props.navigation.navigate("borrow");
-          }}
-          title="go to Borrowed"
-        />
+      <View style={boundingBox}>
+        <View style={navigatorButtonBox}>
+          <View style={selectionStyleBox}>
+            <Text style={selectionTextStyle}>Bookshelf</Text>
+          </View>
+          <View style={otherStyleBox}>
+            <TouchableOpacity
+              onPress={() => {
+                this.props.navigation.navigate("borrow");
+              }}
+            >
+              <Text style={otherTextStyle}>Borrowed</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+        <Text></Text>
+
         <Button onPress={this.addBookScreen} title="Add Book" />
+
         <ScrollView>
           {this.renderLentBooks()}
           {this.renderPickUpPending()}
