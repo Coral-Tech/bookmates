@@ -1,9 +1,19 @@
 import _ from "lodash";
 import React, { Component } from "react";
-import { View, Text, Button, FlatList, Image } from "react-native";
+import {
+  View,
+  Text,
+  Button,
+  FlatList,
+  Image,
+  TouchableOpacity,
+  SafeAreaView,
+  ScrollView,
+} from "react-native";
 import { connect } from "react-redux";
 
 import { Spinner } from "../common";
+import { Styles } from "../../StyleSheet";
 
 import {
   booksBookshelfFetch,
@@ -18,6 +28,12 @@ import {
 } from "../../actions/BookshelfActions";
 
 import { profileFetch } from "../../actions/ProfileActions";
+
+import { YellowBox } from "react-native";
+
+YellowBox.ignoreWarnings([
+  "VirtualizedLists should never be nested", // TODO: Remove when fixed
+]);
 
 // -------------------------- TO DO  --------------------------
 // * Design
@@ -45,39 +61,100 @@ class BookshelfList extends Component {
   }
 
   renderLentBooksRow(book) {
+    const {
+      bookBox,
+      imageBox,
+      imageStyle,
+      detailBox,
+      textBox,
+      bookTitleStyle,
+      bookAuthorStyle,
+
+      iconStyle,
+      lenderDataDetailBox,
+      lenderDataStyle,
+      buttonBox,
+      acceptStyle,
+      removeStyle,
+      touchableOpacityBox,
+    } = Styles.bookshelfScreen;
+
     if (book) {
       const { b_name, b_author, b_cover, b_added_date } = book.item.b_details;
       const { u_name, u_lastname, u_phone } = book.item.b_borrower_details;
       return (
-        <View>
-          <Text>{b_name}</Text>
-          <Text>{b_author}</Text>
-          <Text>
-            Request from: {u_name} {u_lastname}
-          </Text>
-          <Text>Contact: {u_phone}</Text>
-          <Image source={{ uri: b_cover }} style={{ height: 100, width: 75 }} />
-          <Button
-            onPress={() => this.markReturnedOption(book.item)}
-            title="Mark returned"
-          />
-          <Text></Text>
+        <View style={bookBox}>
+          <View style={imageBox}>
+            <Image
+              source={{ uri: b_cover }}
+              style={imageStyle}
+              defaultSource={require("../../img/cover.png")}
+            />
+          </View>
+          <View style={detailBox}>
+            <View style={textBox}>
+              <Text style={bookTitleStyle}>{b_name}</Text>
+              <Text style={bookAuthorStyle}>{b_author}</Text>
+
+              <View style={{ paddingTop: "5%" }}>
+                <View style={lenderDataDetailBox}>
+                  <Image
+                    style={iconStyle}
+                    source={require("../../img/discover_screen/owner_icon.png")}
+                  />
+                  <Text style={lenderDataStyle}>
+                    {u_name} {u_lastname}
+                  </Text>
+                </View>
+
+                <View style={lenderDataDetailBox}>
+                  <Image
+                    style={iconStyle}
+                    source={require("../../img/discover_screen/phone_icon.png")}
+                  />
+
+                  <Text style={lenderDataStyle}>Contact: {u_phone}</Text>
+                </View>
+                <View style={buttonBox}>
+                  <TouchableOpacity
+                    style={touchableOpacityBox}
+                    onPress={() => this.markReturnedOption(book.item)}
+                  >
+                    <Text style={acceptStyle}>Mark returned</Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
+            </View>
+          </View>
         </View>
       );
     }
   }
 
   renderLentBooks() {
+    const { titleStyle } = Styles.bookshelfScreen;
+
     if (this.props.lent_books_loading) {
       return <Spinner />;
     }
 
+    if (
+      this.props.lent_books === undefined ||
+      this.props.lent_books.length == 0
+    ) {
+      return <View></View>;
+    }
+
     return (
-      <FlatList
-        data={this.props.lent_books || []}
-        renderItem={(book) => this.renderLentBooksRow(book)}
-        keyExtractor={(book) => book.b_id}
-      />
+      <View>
+        <Text style={titleStyle}>Lent books</Text>
+        <FlatList
+          data={this.props.lent_books || []}
+          renderItem={(book) => this.renderLentBooksRow(book)}
+          keyExtractor={(book) => book.b_id}
+        />
+        <Text></Text>
+      </View>
     );
   }
 
@@ -94,43 +171,106 @@ class BookshelfList extends Component {
   }
 
   renderPickUpPendingRow(book) {
+    const {
+      bookBox,
+      imageBox,
+      imageStyle,
+      detailBox,
+      textBox,
+      bookTitleStyle,
+      bookAuthorStyle,
+
+      iconStyle,
+      lenderDataDetailBox,
+      lenderDataStyle,
+      buttonBox,
+      acceptStyle,
+      removeStyle,
+      touchableOpacityBox,
+    } = Styles.bookshelfScreen;
+
     if (book) {
       const { b_name, b_author, b_cover, b_added_date } = book.item.b_details;
       const { u_name, u_lastname, u_phone } = book.item.b_borrower_details;
       return (
-        <View>
-          <Text>{b_name}</Text>
-          <Text>{b_author}</Text>
-          <Text>
-            Request from: {u_name} {u_lastname}
-          </Text>
-          <Text>Contact: {u_phone}</Text>
-          <Image source={{ uri: b_cover }} style={{ height: 100, width: 75 }} />
-          <Button
-            onPress={() => this.acceptPickUpRecieved(book.item)}
-            title="Picked up"
-          />
-          <Button
-            onPress={() => this.cancelPickUp(book.item)}
-            title="Cancel pickup"
-          />
-          <Text></Text>
+        <View style={bookBox}>
+          <View style={imageBox}>
+            <Image
+              source={{ uri: b_cover }}
+              style={imageStyle}
+              defaultSource={require("../../img/cover.png")}
+            />
+          </View>
+          <View style={detailBox}>
+            <View style={textBox}>
+              <Text style={bookTitleStyle}>{b_name}</Text>
+              <Text style={bookAuthorStyle}>{b_author}</Text>
+
+              <View style={{ paddingTop: "5%" }}>
+                <View style={lenderDataDetailBox}>
+                  <Image
+                    style={iconStyle}
+                    source={require("../../img/discover_screen/owner_icon.png")}
+                  />
+                  <Text style={lenderDataStyle}>
+                    {u_name} {u_lastname}
+                  </Text>
+                </View>
+
+                <View style={lenderDataDetailBox}>
+                  <Image
+                    style={iconStyle}
+                    source={require("../../img/discover_screen/phone_icon.png")}
+                  />
+
+                  <Text style={lenderDataStyle}>Contact: {u_phone}</Text>
+                </View>
+                <View style={buttonBox}>
+                  <TouchableOpacity
+                    style={touchableOpacityBox}
+                    onPress={() => this.acceptPickUpRecieved(book.item)}
+                  >
+                    <Text style={acceptStyle}>Mark picked-up</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    style={touchableOpacityBox}
+                    onPress={() => this.cancelPickUp(book.item)}
+                  >
+                    <Text style={removeStyle}>Cancel pick-up</Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
+            </View>
+          </View>
         </View>
       );
     }
   }
 
   renderPickUpPending() {
+    const { titleStyle } = Styles.bookshelfScreen;
+
     if (this.props.requests_accepted_loading) {
       return <Spinner />;
     }
 
+    if (
+      this.props.requests_accepted === undefined ||
+      this.props.requests_accepted.length == 0
+    ) {
+      return <View></View>;
+    }
+
     return (
-      <FlatList
-        data={this.props.requests_accepted || []}
-        renderItem={(book) => this.renderPickUpPendingRow(book)}
-        keyExtractor={(book) => book.b_id}
-      />
+      <View>
+        <Text style={titleStyle}>Pick up pending</Text>
+        <FlatList
+          data={this.props.requests_accepted || []}
+          renderItem={(book) => this.renderPickUpPendingRow(book)}
+          keyExtractor={(book) => book.b_id}
+        />
+        <Text></Text>
+      </View>
     );
   }
 
@@ -147,78 +287,181 @@ class BookshelfList extends Component {
   }
 
   renderRequestsRecievedRow(book) {
+    const {
+      bookBox,
+      imageBox,
+      imageStyle,
+      detailBox,
+      textBox,
+      bookTitleStyle,
+      bookAuthorStyle,
+
+      iconStyle,
+      lenderDataDetailBox,
+      lenderDataStyle,
+      buttonBox,
+      acceptStyle,
+      removeStyle,
+      touchableOpacityBox,
+    } = Styles.bookshelfScreen;
+
     if (book) {
       const { b_name, b_author, b_cover, b_added_date } = book.item.b_details;
-      const { u_name, u_lastname } = book.item.b_borrower_details;
+      const { u_name, u_lastname, u_location } = book.item.b_borrower_details;
       return (
-        <View>
-          <Text>{b_name}</Text>
-          <Text>{b_author}</Text>
-          <Text>
-            Request from: {u_name} {u_lastname}
-          </Text>
-          <Image source={{ uri: b_cover }} style={{ height: 100, width: 75 }} />
-          <Button
-            onPress={() => this.acceptRequestRecieved(book.item)}
-            title="Accept"
-          />
-          <Button
-            onPress={() => this.removeRequestRecieved(book.item)}
-            title="Delete"
-          />
-          <Text></Text>
+        <View style={bookBox}>
+          <View style={imageBox}>
+            <Image
+              source={{ uri: b_cover }}
+              style={imageStyle}
+              defaultSource={require("../../img/cover.png")}
+            />
+          </View>
+          <View style={detailBox}>
+            <View style={textBox}>
+              <Text style={bookTitleStyle}>{b_name}</Text>
+              <Text style={bookAuthorStyle}>{b_author}</Text>
+
+              <View style={{ paddingTop: "5%" }}>
+                <View style={lenderDataDetailBox}>
+                  <Image
+                    style={iconStyle}
+                    source={require("../../img/discover_screen/owner_icon.png")}
+                  />
+                  <Text style={lenderDataStyle}>
+                    From {u_name} {u_lastname}
+                  </Text>
+                </View>
+
+                <View style={lenderDataDetailBox}>
+                  <Image
+                    style={iconStyle}
+                    source={require("../../img/discover_screen/location_icon.png")}
+                  />
+
+                  <Text style={lenderDataStyle}>{u_location}</Text>
+                </View>
+                <View style={buttonBox}>
+                  <TouchableOpacity
+                    style={touchableOpacityBox}
+                    onPress={() => this.acceptRequestRecieved(book.item)}
+                  >
+                    <Text style={acceptStyle}>Accept</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    style={touchableOpacityBox}
+                    onPress={() => this.removeRequestRecieved(book.item)}
+                  >
+                    <Text style={removeStyle}>Remove</Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
+            </View>
+          </View>
         </View>
       );
     }
   }
 
   renderRequestsRecieved() {
+    const { titleStyle } = Styles.bookshelfScreen;
+
     if (this.props.requests_recieved_loading) {
       return <Spinner />;
     }
 
+    if (
+      this.props.requests_recieved === undefined ||
+      this.props.requests_recieved.length == 0
+    ) {
+      return <View></View>;
+    }
+
     return (
-      <FlatList
-        data={this.props.requests_recieved || []}
-        renderItem={(book) => this.renderRequestsRecievedRow(book)}
-        keyExtractor={(book) => book.b_id}
-      />
+      <View>
+        <Text style={titleStyle}>Requests recieved</Text>
+        <FlatList
+          data={this.props.requests_recieved || []}
+          renderItem={(book) => this.renderRequestsRecievedRow(book)}
+          keyExtractor={(book) => book.b_id}
+        />
+        <Text></Text>
+      </View>
     );
   }
 
   // RENDER MY BOOKS
 
   renderOwnedBooksRow(book) {
+    const {
+      bookBox,
+      imageBox,
+      imageStyle,
+      detailBox,
+      textBoxMyBooks,
+      bookTitleStyle,
+      bookAuthorStyle,
+    } = Styles.bookshelfScreen;
+
     if (book) {
       const { b_name, b_author, b_cover, b_added_date } = book.item;
       return (
-        <View>
-          <Text>{b_name}</Text>
-          <Text>{b_author}</Text>
-          <Text>Added: {b_added_date}</Text>
-          <Image source={{ uri: b_cover }} style={{ height: 100, width: 75 }} />
-          <Text></Text>
+        <View style={bookBox}>
+          <View style={imageBox}>
+            <Image
+              source={{ uri: b_cover }}
+              style={imageStyle}
+              defaultSource={require("../../img/cover.png")}
+            />
+          </View>
+          <View style={detailBox}>
+            <View style={textBoxMyBooks}>
+              <Text style={bookTitleStyle}>{b_name}</Text>
+              <Text style={bookAuthorStyle}>{b_author}</Text>
+            </View>
+          </View>
         </View>
       );
     }
   }
 
   renderOwnedBooks() {
+    const {
+      titleStyle,
+      addBookStyle,
+      addBookContainer,
+    } = Styles.bookshelfScreen;
+
     if (this.props.my_books_loading) {
       return <Spinner />;
     }
+    if (this.props.my_books === undefined || this.props.my_books.length == 0) {
+      return (
+        <View style={addBookContainer}>
+          <Text style={addBookStyle}>
+            Add your first book on the button above
+          </Text>
+        </View>
+      );
+    }
     return (
-      <FlatList
-        data={this.props.my_books || []}
-        renderItem={(book) => this.renderOwnedBooksRow(book)}
-        keyExtractor={(book) => book.b_id}
-      />
+      <View>
+        <Text style={titleStyle}>My books</Text>
+        <FlatList
+          data={this.props.my_books || []}
+          renderItem={(book) => this.renderOwnedBooksRow(book)}
+          keyExtractor={(book) => book.b_id}
+        />
+        <View style={{ paddingBottom: 30 }} />
+      </View>
     );
   }
 
   // RENDER
 
   render() {
+    const { boundingBox, titleStyle } = Styles.bookshelfScreen;
+
     return (
       <View>
         <Button
@@ -227,19 +470,13 @@ class BookshelfList extends Component {
           }}
           title="go to Borrowed"
         />
-        <Text>Lent books</Text>
-        {this.renderLentBooks()}
-        <Text>----------------------------------------------------------</Text>
-        <Text>Pick up pending</Text>
-        {this.renderPickUpPending()}
-        <Text>----------------------------------------------------------</Text>
-        <Text>Requests recieved</Text>
-        {this.renderRequestsRecieved()}
-        <Text>----------------------------------------------------------</Text>
-        <Text>My books</Text>
-        {this.renderOwnedBooks()}
-        <Text>----------------------------------------------------------</Text>
         <Button onPress={this.addBookScreen} title="Add Book" />
+        <ScrollView>
+          {this.renderLentBooks()}
+          {this.renderPickUpPending()}
+          {this.renderRequestsRecieved()}
+          {this.renderOwnedBooks()}
+        </ScrollView>
       </View>
     );
   }

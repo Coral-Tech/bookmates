@@ -29,21 +29,21 @@ class LoginOrSignUp extends Component {
         <View style={logoBox}>
           <Image
             style={imageStyle}
-            source={require("../../img/startupScreen/logo.png")}
+            source={require("../../img/startup_screen/logo.png")}
           />
         </View>
         <View style={buttonBox}>
           <TouchableOpacity onPress={this.logIn} style={touchableOpacityBox}>
             <Image
               style={buttonStyle}
-              source={require("../../img/startupScreen/logInButton.png")}
+              source={require("../../img/startup_screen/log_in_button.png")}
             />
           </TouchableOpacity>
 
           <TouchableOpacity onPress={this.signUp}>
             <Image
               style={buttonStyle}
-              source={require("../../img/startupScreen/signUpButton.png")}
+              source={require("../../img/startup_screen/sign_up_button.png")}
             />
           </TouchableOpacity>
         </View>

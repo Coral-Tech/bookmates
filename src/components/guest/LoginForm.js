@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { View, Text, Button } from "react-native";
 import { connect } from "react-redux";
-
+import { Styles } from "../../StyleSheet";
 import { Input, CardSection, Spinner } from "../common";
 import {
   usernameAdd,
@@ -52,30 +52,34 @@ class LoginForm extends Component {
   };
 
   render() {
+    const { boundingBox, inputBox, buttonBox } = Styles.logInScreen;
+
     return (
-      <View>
-        <CardSection>
-          <Input
-            label="Email"
-            placeholder="email"
-            onChangeText={this.onUsernameChange.bind(this)}
-            value={this.props.username}
-          />
-        </CardSection>
+      <View style={boundingBox}>
+        <View style={inputBox}>
+          <CardSection>
+            <Input
+              label="Email"
+              placeholder="email"
+              onChangeText={this.onUsernameChange.bind(this)}
+              value={this.props.username}
+            />
+          </CardSection>
 
-        <CardSection>
-          <Input
-            label="Password"
-            placeholder="password"
-            onChangeText={this.onPasswordChange.bind(this)}
-            value={this.props.password}
-          />
-        </CardSection>
-
-        {this.renderError()}
-        {this.renderButton()}
-
-        <Button onPress={this.goBack} title="Back" />
+          <CardSection>
+            <Input
+              label="Password"
+              placeholder="password"
+              onChangeText={this.onPasswordChange.bind(this)}
+              value={this.props.password}
+            />
+          </CardSection>
+          {this.renderError()}
+        </View>
+        <View style={buttonBox}>
+          {this.renderButton()}
+          <Button onPress={this.goBack} title="Back" />
+        </View>
       </View>
     );
   }

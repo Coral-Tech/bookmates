@@ -53,7 +53,7 @@ class SignUpForm extends Component {
 
   render() {
     return (
-      <View>
+      <View style={{ paddingTop: 100 }}>
         <CardSection>
           <Input
             label="Email"

@@ -29,12 +29,18 @@ const guestScreens = {
     screen: LoginForm,
     navigationOptions: {
       headerShown: false,
+      cardStyle: {
+        backgroundColor: "#fff",
+      },
     },
   },
   signup: {
     screen: SignUpForm,
     navigationOptions: {
       headerShown: false,
+      cardStyle: {
+        backgroundColor: "#fff",
+      },
     },
   },
   profileadd: {
@@ -54,18 +60,21 @@ const bookshelfScreens = {
     screen: BookshelfList,
     navigationOptions: {
       headerShown: false,
+      cardStyle: { backgroundColor: "white" },
     },
   },
   bookshelfadd: {
     screen: AddBook,
     navigationOptions: {
       headerShown: false,
+      cardStyle: { backgroundColor: "white" },
     },
   },
   borrow: {
     screen: BorrowList,
     navigationOptions: {
       headerShown: false,
+      cardStyle: { backgroundColor: "white" },
     },
   },
   // bookshelfedit: { screen: BookshelfList },
@@ -76,21 +85,36 @@ const profileScreens = {
     screen: Profile,
     navigationOptions: {
       headerShown: false,
+      cardStyle: { backgroundColor: "white" },
     },
   },
   profileEdit: {
     screen: EditProfile,
     navigationOptions: {
       headerShown: false,
+      cardStyle: { backgroundColor: "white" },
+    },
+  },
+};
+
+const discoverScreens = {
+  discoverScreen: {
+    screen: DiscoverList,
+    navigationOptions: {
+      headerShown: false,
+      cardStyle: { backgroundColor: "white" },
     },
   },
 };
 
 const bookshelfNavigation = createStackNavigator(bookshelfScreens);
 const profileNavigation = createStackNavigator(profileScreens);
+const discoverNavigation = createStackNavigator(discoverScreens);
 
 const userScreen = {
-  discover: { screen: DiscoverList },
+  discover: {
+    screen: discoverNavigation,
+  },
   bookshelf: {
     screen: bookshelfNavigation,
     navigationOptions: {
@@ -119,7 +143,10 @@ const rootNavigation = createStackNavigator({
   },
   user: {
     screen: userNavigation,
-    navigationOptions: { headerLeft: () => null, gestureEnabled: false },
+    navigationOptions: {
+      headerLeft: () => null,
+      gestureEnabled: false,
+    },
   },
 });
 

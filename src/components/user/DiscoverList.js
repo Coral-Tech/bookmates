@@ -1,7 +1,15 @@
 import _ from "lodash";
 import React, { Component } from "react";
-import { View, Text, Button, FlatList, Image } from "react-native";
+import {
+  View,
+  Text,
+  Button,
+  FlatList,
+  Image,
+  TouchableOpacity,
+} from "react-native";
 import { connect } from "react-redux";
+import { Styles } from "../../StyleSheet";
 
 import { Spinner } from "../common";
 import { booksDiscoverFetch } from "../../actions/DiscoverActions";
@@ -44,23 +52,29 @@ class DiscoverList extends Component {
   };
 
   renderSendBorrowRequestButton(book) {
+    const { borrowButtonStyle } = Styles.discoverScreen;
+
     if (this.props.loading_borrowed) {
       return <Spinner />;
     }
 
     if (this.props.borrow_books.includes(book.b_id)) {
       return (
-        <Button
-          onPress={() => this.removeBorrowOption(book)}
-          title="Remove Borrow Request"
-        />
+        <TouchableOpacity onPress={() => this.removeBorrowOption(book)}>
+          <Image
+            style={borrowButtonStyle}
+            source={require("../../img/discover_screen/cancel_request.png")}
+          />
+        </TouchableOpacity>
       );
     }
     return (
-      <Button
-        onPress={() => this.borrowOption(book)}
-        title="Send borrow request"
-      />
+      <TouchableOpacity onPress={() => this.borrowOption(book)}>
+        <Image
+          style={borrowButtonStyle}
+          source={require("../../img/discover_screen/ask_to_borrow.png")}
+        />
+      </TouchableOpacity>
     );
   }
 
@@ -77,15 +91,29 @@ class DiscoverList extends Component {
   };
 
   renderStarButton(book) {
+    const { starButtonStyle } = Styles.discoverScreen;
+
     if (this.props.loading_star) {
       return <Spinner />;
     }
     if (this.props.starred_books.includes(book.b_id)) {
       return (
-        <Button onPress={() => this.removeStarOption(book)} title="Unstar" />
+        <TouchableOpacity onPress={() => this.removeStarOption(book)}>
+          <Image
+            style={starButtonStyle}
+            source={require("../../img/discover_screen/remove_star.png")}
+          />
+        </TouchableOpacity>
       );
     }
-    return <Button onPress={() => this.starOption(book)} title="Star" />;
+    return (
+      <TouchableOpacity onPress={() => this.starOption(book)}>
+        <Image
+          style={starButtonStyle}
+          source={require("../../img/discover_screen/star.png")}
+        />
+      </TouchableOpacity>
+    );
   }
 
   // RENDER ALL ITEMS
@@ -93,19 +121,66 @@ class DiscoverList extends Component {
   renderRow(book) {
     const { b_name, b_author, b_cover, b_added_date } = book.item.b_details;
     const { u_name, u_lastname, u_location } = book.item.b_lender_details;
+    const {
+      bookBox,
+      imageBox,
+      textBox,
+      buttonBox,
+      detailBox,
+      imageStyle,
+      bookTitleStyle,
+      bookAuthorStyle,
+      starButtonBox,
+      borrowButtonBox,
+      lenderDataDetailBox,
+      iconStyle,
+      lenderDataStyle,
+    } = Styles.discoverScreen;
 
     return (
-      <View>
-        <Text>Book: {b_name}</Text>
-        <Text>Author: {b_author}</Text>
-        <Text>
-          Owner: {u_name} {u_lastname}
-        </Text>
-        <Text>Location: {u_location}</Text>
-        {this.renderStarButton(book.item)}
-        {this.renderSendBorrowRequestButton(book.item)}
-        <Image source={{ uri: b_cover }} style={{ height: 100, width: 75 }} />
-        <Text>----------------------------------------------------------</Text>
+      <View style={bookBox}>
+        <View style={imageBox}>
+          <Image
+            source={{ uri: b_cover }}
+            style={imageStyle}
+            defaultSource={require("../../img/cover.png")}
+          />
+        </View>
+        <View style={detailBox}>
+          <View style={textBox}>
+            <Text style={bookTitleStyle}>{b_name}</Text>
+            <Text style={bookAuthorStyle}>{b_author}</Text>
+
+            <View style={{ paddingTop: "5%" }}>
+              <View style={lenderDataDetailBox}>
+                <Image
+                  style={iconStyle}
+                  source={require("../../img/discover_screen/owner_icon.png")}
+                />
+                <Text style={lenderDataStyle}>
+                  {u_name} {u_lastname}
+                </Text>
+              </View>
+
+              <View style={lenderDataDetailBox}>
+                <Image
+                  style={iconStyle}
+                  source={require("../../img/discover_screen/location_icon.png")}
+                />
+
+                <Text style={lenderDataStyle}>{u_location}</Text>
+              </View>
+            </View>
+          </View>
+          <View style={buttonBox}>
+            <View style={borrowButtonBox}>
+              {this.renderSendBorrowRequestButton(book.item)}
+            </View>
+            <View style={starButtonBox}>
+              {this.renderStarButton(book.item)}
+            </View>
+          </View>
+        </View>
       </View>
     );
   }
@@ -125,7 +200,7 @@ class DiscoverList extends Component {
   }
 
   render() {
-    return <View>{this.renderList()}</View>;
+    return <View style={{ flex: 1 }}>{this.renderList()}</View>;
   }
 }
 

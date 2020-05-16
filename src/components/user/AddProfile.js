@@ -42,7 +42,7 @@ class AddBook extends Component {
 
   render() {
     return (
-      <View>
+      <View style={{ paddingTop: 100 }}>
         <CardSection>
           <Input
             label="Name"
