@@ -24,6 +24,7 @@ class LoginOrSignUp extends Component {
       buttonStyle,
       touchableOpacityBox,
     } = Styles.startupScreen;
+
     return (
       <View style={boundingBox}>
         <View style={logoBox}>
@@ -31,6 +32,10 @@ class LoginOrSignUp extends Component {
             style={imageStyle}
             source={require("../../img/startup_screen/logo.png")}
           />
+        </View>
+        <View style={{ alignItems: "center" }}>
+          <Text>version 0.1</Text>
+          <Text>May 16, 2020</Text>
         </View>
         <View style={buttonBox}>
           <TouchableOpacity onPress={this.logIn} style={touchableOpacityBox}>
