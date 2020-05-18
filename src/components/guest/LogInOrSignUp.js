@@ -6,6 +6,8 @@ import { Styles } from "../../StyleSheet";
 // * Design
 // ------------------------------------------------------------
 
+const v = require("../../../app.json");
+
 class LoginOrSignUp extends Component {
   logIn = () => {
     this.props.navigation.navigate("login");
@@ -33,10 +35,10 @@ class LoginOrSignUp extends Component {
             source={require("../../img/startup_screen/logo.png")}
           />
         </View>
-        <View style={{ alignItems: "center" }}>
-          <Text>version 0.1</Text>
-          <Text>May 16, 2020</Text>
-        </View>
+
+        {/* VERSIONING */}
+        <Text style={{ alignSelf: "center" }}>v{v.expo.version}</Text>
+
         <View style={buttonBox}>
           <TouchableOpacity onPress={this.logIn} style={touchableOpacityBox}>
             <Image

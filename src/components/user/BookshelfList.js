@@ -209,7 +209,7 @@ class BookshelfList extends Component {
                     source={require("../../img/discover_screen/owner_icon.png")}
                   />
                   <Text style={lenderDataStyle}>
-                    {u_name} {u_lastname} will contact you to pick up this book
+                    {u_name} {u_lastname} will contact you for pick up
                   </Text>
                 </View>
 

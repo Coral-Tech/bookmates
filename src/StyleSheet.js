@@ -181,11 +181,10 @@ export const Styles = {
     },
     detailBox: {
       width: "65%",
-      padding: "5%",
+      padding: "1%",
     },
     textBoxMyBooks: {
       height: "70%",
-      // alignItems: "center",
       justifyContent: "center",
     },
     textBox: {
@@ -212,7 +211,7 @@ export const Styles = {
       color: "#6a6a6a",
     },
     buttonBox: {
-      height: "60%",
+      height: "55%",
       justifyContent: "space-around",
     },
     touchableOpacityBox: {
